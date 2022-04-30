@@ -1,0 +1,37 @@
+S8_A1_Asignatura
+
+
+Se quiere diseñar e implementar un tipo abstracto de datos para manejar asignaturas. Una asignatura vendrá representada por un nombre y una colección de alumnos matriculados en ella. Y de un alumno se requiere el nombre y los dos apellidos junto con las notas de un primer y un segundo parcial.
+
+  Asignatura
+    - String nombre
+    - ICol<Alumno> asig
+    + Asignatura (String nombre)
+    + String getNombre()
+    + String toString () 
+    + boolean esIgual (Asignatura a)
+    + int size()
+    + Alumno get (int pos)
+    + Alumno getNotas (Alumno alumno)
+    + matricularAlumno (Alumno alumno) 
+    + desmatricularAlumno (Alumno alumno)
+
+
+- Implementar el TAD Asignatura como una ICol<Alumno> y perteneciente a un paquete llamado "academia" -donde tendremos implementado el TAD Alumno.
+
+En la asignatura, los alumnos estarán ordenados lexicográficamente (primer apellido => segundo apellido ==> nombre). Para respetar esa ordenación utilizaremos el String que nos proporciona el método "clave" de Alumno.
+
+Entre Strings, existe el método
+  public int compareTo (String stIn)
+con la siguiente postcondición
+resultado = 0, si stIn es igual al objeto (como el método equals).
+resultado < 0, si stIn va después que el objeto en el orden lexicográfico.
+resultado > 0, si stIn va antes que el objeto en el orden lexicográfico.
+
+Ejemplo:
+
+  String c1 = "confinamiento";
+  String c2 = "confinados";
+  c2.compareTo(c1) = -9
+
+Observad que las operaciones: "getNotas", "desmatricularAlumno" y "calificarAlumno"; necesitan buscar la posición del alumno (las tres, la misma búsqueda), y que la operación "matricularAlumno", necesita buscar la posición en la que debe añadirse el alumno (respetando el orden lexicográfico).

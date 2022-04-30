@@ -1,0 +1,29 @@
+﻿S10_A2 Figuras en retícula plana
+
+
+A partir del TAD_Punto y del TAD_Figura, redactar extensiones de la implementación de este último TAD, para disponer de figuras como un Dot (un elemento simple de la retícula: un punto); un Circulo, representado por el centro y el radio; y un Rectángulo, representado por el centro y sus dos lados diferentes (su anchura y su altura). Tanto el círculo como el rectángulo, al ser figuras planas cerradas, tienen área y perímetro; por lo que podríamos dotarlas de métodos que lo calculen.
+Seguiremos, para las tres, el criterio de nombres y cabeceras que se cita a continuación.
+
+Dot --> Figura
+  + Dot (IPunto pos) 
+  + String toString ()
+
+Círculo --> Figura
+  - int radio
+  + Círculo (IPunto centro, int r) 
+  + String toString ()
+  + int getRadio ()
+  + boolean equals (Object f) 
+  + int área ()
+  + int perímetro ()
+
+Rectángulo --> Figura
+  - int anchura
+  - int altura
+  + Rectángulo (IPunto centro, int ancho, int alto) 
+  + String toString () 
+  + int getAnchura()
+  + int getAltura()
+  + boolean equals (Object f) 
+  + int área ()
+  + int perímetro ()

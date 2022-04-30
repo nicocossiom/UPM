@@ -1,0 +1,12 @@
+{
+    "C_Cpp.errorSquiggles": "Disabled",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "guava-31.0.1-jre.jar"
+    ],
+    "java.format.settings.url": ".vscode/java-formatter.xml",
+    "[java]": {
+        "editor.insertSpaces": true
+    },
+    "python.linting.pycodestyleEnabled": true
+}

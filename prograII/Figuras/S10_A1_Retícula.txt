@@ -1,0 +1,30 @@
+﻿S10_A1 Retícula plana
+
+Se quiere trabajar con figuras planas en la retícula (ZxZ) (primer cuadrante del plano). Cada figura se representará por un punto que indicará la posición de la figura en la retícula (en principio, "el centro" de la figura), y otro tipo de atributos que dependerán de la figura en sí. La figura más simple sería un Dot (un elemento de la retícula, un punto). Y otras posibles serían: el Segmento (con la longitud), el Círculo (con el radio), el Rectángulo (con la anchura y la altura), etc.
+
+Se quiere diseñar un TAD_Figura que permita extender implementaciones a otro tipo de figuras como las mencionadas. La figura abstracta no puede definir más que el punto que determina la posición (propio de todas las figuras). Serán las figuras concretas las que definan los atributos y métodos idiosincráticos de ellas.
+Para el TAD_Figura, necesitaremos el constructor, el visualizador, el comparador por igualdad, el selector de la posición, la distancia al origen y la traslación. Todo ello según el criterio de nombres y cabeceras que se cita a continuación.
+
+TAD_Figura (IFigura <-- Figura) 
+  - IPunto posicion
+  + Figura (IPunto pos) 
+  + String toString ()
+  + IPunto getPosicion ()
+  + boolean equals (Object f) 
+  + int distA0 ()
+  + void mover (int dx, int dy) 
+
+Se ha diseñado un TAD_Punto de coordenadas planas y enteras como herramienta para abordar la representación de los puntos constitutivos de la retícula.
+Se advierte que la distancia al origen (método "dista0") se mide como el mínimo número de puntos que hay que recorrer para ir del punto en cuestión al origen. Por ejemplo, la distancia al origen del punto (3,2) es 3+2=5.
+El método "mover" realiza la traslación euclídea.
+
+TAD_Punto (IPunto <-- Punto)
+  - int x
+  - int y 
+  + Punto (int xx, int yy) 
+  + String toString ()
+  + int getX ()
+  + int getY ()
+  + boolean equals (Object p)
+  + int distA0 () 
+  + void mover (int dx, int dy) 

@@ -1,0 +1,10 @@
+S5_A2_AgendaTelefonica
+
+
+1.- Incorporar una operación sobre la Agenda que permita cambiar el teléfono de un Contacto dado (modificando el número y no, creando un contacto nuevo).
+
+2.- Incorporar una operación sobre la Agenda que permita contar los contactos de un prefijo telefónico determinado.
+
+3.- Incorporar al tester de la Agenda las pruebas sobre las nuevas operaciones.
+
+4.- Crear un archivo de texto plano con las operaciones necesarias para cumplir los requerimientos 1, 2, y 3, ponerle de nombre "AmpliacionAgenda.txt" y entregarlo en moodle.
