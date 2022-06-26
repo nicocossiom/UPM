@@ -1,0 +1,9 @@
+grant Codebase "http://127.0.0.1/TPV/"  {
+    permission java.security.AllPermission;
+};
+
+grant {
+	permission java.net.SocketPermission
+               "*:*",
+               "connect,accept,resolve";
+};
