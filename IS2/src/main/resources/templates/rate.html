@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Valorar plato | TapasTop</title>
+</head>
+<body>
+<h1>Valorar plato</h1>
+<h2 th:text="${rateDishRequest.name}"></h2>
+<form action="#" method="post" th:action="@{/rate/__${rateDishRequest.user}__/__${rateDishRequest.id}__}"
+      th:object="${rateDishRequest}">
+    <p>Valoración: <select th:field="*{rating}">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select></p>
+    <p><input type="submit" value="Valorar"/></p>
+</form>
+</body>
+</html>

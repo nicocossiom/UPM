@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Registro | TapasTop</title>
+
+		<link rel="stylesheet" th:href="@{/css/main.css}" />
+	</head>
+	<body>
+		<div class="logo">
+			<img th:src="@{/img/logo-no-background.png}" />
+		</div>
+		<div class="centered-container">
+			<div class="styled-container">
+				<form action="#" class="form" th:action="@{/}">
+					<input class="form-button" type="submit" value="Volver a inicio" />
+				</form>
+			</div>
+			<div class="styled-container">
+				Registro
+				<hr />
+				<form action="#" class="form" method="post" th:action="@{/register}" th:object="${registerobject}">
+					Usuario:
+					<input th:field="*{id}" type="text" />
+					Contraseña:
+					<input th:field="*{password}" type="password" />
+					Contraseña (confirmar):
+					<input th:field="*{confirmPassword}" type="password" />
+					Correo:
+					<input th:field="*{email}" type="text" />
+					Correo (confirmar):
+					<input th:field="*{confirmEmail}" type="text" />
+					Nombre:
+					<input th:field="*{name}" type="text" />
+					Apellidos:
+					<input th:field="*{surname}" type="text" />
+					Dirección:
+					<input th:field="*{address}" type="text" />
+					URL de foto:
+					<input th:field="*{imagePath}" type="text" />
+					<input type="submit" value="Enviar" />
+				</form>
+				<p th:if="${status!=null && status.toLowerCase().contains('volver')}" th:text="${status}"></p>
+				<p class="error" th:if="${status!=null && !status.toLowerCase().contains('volver')}" th:text="${status}"></p>
+			</div>
+		</div>
+	</body>
+</html>

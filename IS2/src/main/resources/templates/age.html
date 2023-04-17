@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <title>Verificar edad | TapasTop</title>
+</head>
+<body>
+<div class="logo">
+    <img th:src="@{/img/logo-no-background.png}">
+</div>
+
+<div class="centered-container">
+    <div class="styled-container">
+        Introduzca fecha de nacimiento
+        <hr>
+        <form action="#" class="form" method="post" th:action="@{/age}" th:object="${birthdate}">
+            Día
+            <input th:field="*{day}" type="text"/>
+            Mes
+            <input th:field="*{month}" type="text"/>
+            Año
+            <input th:field="*{year}" type="text"/>
+            <input class="form-button" type="submit" value="Continuar"/>
+        </form>
+    </div>
+</div>
+</body>
+</html>

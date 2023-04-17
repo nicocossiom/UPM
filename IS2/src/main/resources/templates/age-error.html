@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Error de verificación de edad</title>
+		<link rel="stylesheet" th:href="@{/css/main.css}" />
+	</head>
+	<body>
+		<div class="centered-container" style="left: 50%">
+			<div class="styled-container error">
+				Error de verificación de edad
+				<p>No ha indicado una fecha válida o no tiene edad suficiente para hacer uso del servicio.</p>
+				<p>Este servicio es únicamente para personas mayores de edad.</p>
+				<form action="#" class="form" th:action="@{/}">
+					<input class="form-button" type="submit" value="Volver a inicio" />
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
+<style>
+	body {
+		background: #000000;
+	}
+</style>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Login | TapasTop</title>
+		<script src="http://localhost:35729/livereload.js"></script>
+		<link href="https://fonts.googleapis.com" rel="preconnect" />
+		<link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+		<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" th:href="@{/css/login_register.css}" />
+	</head>
+	<body>
+		<div class="logo">
+			<img th:src="@{/img/logo-no-background.png}" />
+		</div>
+		<div class="centered-container">
+			<div class="styled-container">
+				Accede a tu cuenta
+				<hr />
+				<form action="#" class="form" method="post" th:action="@{/}" th:object="${loginobject}">
+					Usuario
+					<input placeholder="ej: miguelon" th:field="*{user}" type="text" />
+					Contraseña
+					<input placeholder="" th:field="*{pass}" type="password" />
+					<input class="form-button" type="submit" value="Entrar" />
+				</form>
+				<p class="error" th:text="${status}"></p>
+			</div>
+			<div class="styled-container">
+				<form action="#" th:action="@{/age}">
+					<input class="form-button" type="submit" value="Registrarse" />
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

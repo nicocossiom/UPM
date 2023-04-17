@@ -1,0 +1,101 @@
+body * {
+    font-family: 'Space Mono', monospace;
+}
+
+body {
+    color: white;
+    background: url(../img/tapas.jpg) no-repeat center center fixed;
+    /* background: #181a1b no-repeat center center fixed; */
+
+    /* make the background image fill maintaining aspect ratio*/
+    background-size: cover;
+
+}
+
+.logo {
+    /* center vertically */
+    width: 50%;
+    height: 90%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* left */
+    margin-left: 50px;
+
+
+}
+
+.logo>img {
+    max-width: 500px;
+    max-height: 500px;
+    width: 100%;
+}
+
+.centered-container {
+    position: fixed;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+}
+
+
+.styled-container {
+    border: 1px solid white;
+    border-radius: 10px;
+    /*make the background glassy*/
+    background: rgba(24, 26, 27, 0.7);
+    backdrop-filter: blur(20px);
+    font-size: 2.2rem;
+    padding: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.styled-container p {
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 20px;
+}
+
+.form {
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*make even gap between items*/
+    gap: 5px;
+
+}
+
+form>input {
+    font-size: 1.5rem;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid white;
+    background: #181a1b;
+    color: white;
+    text-align: center;
+}
+
+.form-button {
+    font-size: 2rem;
+    border: 2px solid white;
+    border-radius: 8px;
+    background-color: #181a1b;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 10px 2px;
+    cursor: pointer;
+}
+
+.form-button:hover {
+    background-color: white;
+    color: #181a1b;
+}
+
+
+.error {
+    color: red;
+}

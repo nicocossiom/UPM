@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" th:href="@{/css/main.css}" />
+		<title>Añadir plato | TapasTop</title>
+	</head>
+	<body>
+		<div class="logo">
+			<img th:src="@{/img/logo-no-background.png}" />
+		</div>
+		<div class="centered-container">
+			<div class="styled-container">
+				<h1>Añadir plato</h1>
+				<hr />
+				<form action="#" method="post" th:action="@{/add/__${addDishRequest.user}__}" th:object="${addDishRequest}">
+					Nombre:
+					<input th:field="*{name}" type="text" />
+					Bar:
+					<input th:field="*{bar}" type="text" />
+					Origen:
+					<input th:field="*{origin}" type="text" />
+					Sabor:
+					<select th:field="*{taste}">
+						<option value="dulce">dulce</option>
+						<option value="salado">salado</option>
+					</select>
+					<input class="form-button" type="submit" value="Añadir" />
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
