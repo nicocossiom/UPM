@@ -1,0 +1,799 @@
+openapi: 3.0.0
+info:
+  title: GeoETSIINF
+  description: RESTful API of the GeoETSIINF service
+  version: '2.0'
+  contact:
+    email: n.cossio@alumnos.upm.es
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+servers:
+  - url: http://localhost:8080/geoetsiinf/api
+
+tags:
+- name: api
+  description: This is the api entry point that allows the navegation to other resources
+- name: treasures
+  description: This endpoint is in charge of managing all user-added treasures related resources
+- name: users
+  description: This endpoint is in charge of managing all users related resources
+- name: foundTreasures
+  description: Permitted operations regarding treasures found by a given user
+- name: friends
+  description: Permitted operations regarding friends which a given user may have
+- name: composites
+  description: Permitted operations regarding the profile of a user, which is a composite of different
+    user related resources
+
+
+paths:
+  /:
+    get:
+      tags:
+      - api
+      summary: Lists references to users and treasures resources
+      responses:
+        200:
+          description: (OK) Succesful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/API'
+        
+  /users:
+    post:
+      tags:
+      - users
+      summary: Registers an user in the system
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          
+        required: true
+      responses:
+        201:
+          $ref: '#/components/responses/Created'
+        400:
+          $ref: '#/components/responses/BadRequest'
+
+    get:
+      tags:
+        - users
+      summary: List all registered users by default
+      parameters:
+        - in: query
+          name: name
+          description: filters by first name or pattern.
+          schema:
+            type: string
+          example: Ana -> returns Analuz, Anaking
+      responses:
+        200:
+          description: (OK) Succesful operation
+          headers:
+            Content-Location:
+              schema:
+                type: string
+              description: >-
+                URL of the representation. Example: http://localhost:8080/geoetsiinf/api/users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfUsers'
+            
+  /users/{userName}:
+    get:
+      tags:
+        - users
+      summary: Returns the info of an user
+      parameters:
+        - in: path
+          name: userName
+          description: User name of the user
+          schema:
+            type: string
+          required: true
+          example: obi-wan
+      responses:
+        200:
+          description: (OK) Succesful operation
+          headers:
+            Content-Location:
+              schema:
+                type: string
+              description: >-
+                URL of the representation. Example: http://localhost:8080/geoetsiinf/api/users/obi-one
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        404:
+          $ref: '#/components/responses/NotFound'
+
+    put:
+      summary: Updates an user
+      tags:
+        - users
+      parameters:
+        - in: path
+          name: userName
+          description: User name of the user to be updated.
+          schema:
+            type: string
+            example: obi-wan
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          
+        required: true
+      responses:
+        200:
+          description: (OK) Succesful operation
+          headers:
+            Content-Location:
+              schema:
+                type: string
+              description: >-
+                URL of the representation. Example: http://localhost:8080/geoetsiinf/api/users/obi-wan
+        400:
+          $ref: '#/components/responses/BadRequest'
+        404:
+          $ref: '#/components/responses/NotFound'
+
+    delete:
+      summary: Deletes an user
+      tags:
+        - users
+      parameters:
+        - in: path
+          name: userName
+          description: User name of the user to be deleted.
+          schema:
+            type: string
+            example: obi-wan
+          required: true
+      responses:
+        204:
+          $ref: '#/components/responses/NoContent'
+        404:
+          $ref: '#/components/responses/NotFound'
+
+  /users/{userName}/treasures:
+    post:
+      summary: The given user adds a treasure
+      tags:
+        - treasures
+      parameters:
+      - in: path
+        name: userName
+        description: User name of the user who wants to add a treasure
+        schema:
+          type: string
+          example: obi-wan
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Treasure'
+          
+        required: true
+      responses:
+        201:
+          $ref: '#/components/responses/Created'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        404:
+          $ref: '#/components/responses/NotFound'
+
+    get:
+      tags:
+        - treasures
+      summary: Lists all treasures added by an user
+      parameters:
+        - in: path
+          description: user of the user whose added treasures to be listed
+          name: userName
+          schema:
+            type: string
+            example: obi-wan
+          required: true
+        - in: query
+          name: before
+          description: filter by elements added before a given date
+          schema:
+            type: string
+            format: date
+            example: "2021-03-17"
+        - in: query
+          name: start
+          description: initial element to list
+          schema:
+            type: integer
+            default: 10
+            example: 1
+        - in: query
+          name: amount
+          description: number of elements to list
+          schema:
+            type: integer
+            default: 10
+            example: 5
+        - in: query
+          name: difficulty
+          description: Difficulty of the treasure
+          schema:
+            type: string
+            example: Medium
+      responses:
+        200:
+          description: (OK) Succesful operation
+          headers:
+            Content-Location:
+              schema:
+                type: string
+              description: >-
+                URL of the representation. Example: http://localhost:8080/geoetsiinf/api/users/obi-one/treasures
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfTreasures'
+
+        404:
+          $ref: '#/components/responses/NotFound'
+
+  /users/{userName}/treasures/{treasureId}:
+    put:
+      summary: Updates a treasure
+      tags:
+        - treasures
+      parameters:
+        - in: path
+          name: userName
+          description: User name of the user
+          schema:
+            type: string
+          example: obi-wan
+          required: true
+        - in: path
+          name: treasureId
+          description: number that identifies a treasure
+          schema:
+            type: integer
+            minimum: 1
+            example: 500
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Treasure'
+          
+        required: true
+      responses:
+        200:
+          description: (OK) Succesful operation
+          headers:
+            Content-Location:
+              schema:
+                type: string
+              description: >-
+                URL of the representation. Example: http://localhost:8080/geoetsiinf/api/users/obi-wan/treasures/1
+        400:
+          $ref: '#/components/responses/BadRequest'
+        404:
+          $ref: '#/components/responses/NotFound'
+
+    delete:
+      summary: Deletes a treasure
+      tags:
+        - treasures
+      parameters:
+        - in: path
+          name: userName
+          description: User name of the user
+          schema:
+            type: string
+          example: obi-wan
+          required: true
+        - in: path
+          name: treasureId
+          description: number that identifies a treasure
+          schema:
+            type: integer
+            minimum: 1
+            example: 500
+          required: true
+      responses:
+        204:
+          $ref: '#/components/responses/NoContent'
+        404:
+          $ref: '#/components/responses/NotFound'
+
+  /users/{userName}/foundTreasures:
+    get:
+      tags:
+        - foundTreasures
+      summary: Lists all found treasures by an user
+      parameters:
+        - in: path
+          description: User name of the user
+          name: userName
+          schema:
+            type: string
+            example: obi-wan
+          required: true
+        - in: query
+          name: before
+          description: filter by elements added before a given date
+          schema:
+            type: string
+            format: date
+            example: "2021-03-17"
+        - in: query
+          name: start
+          description: initial element to list
+          schema:
+            type: integer
+            default: 10
+            example: 1
+        - in: query
+          name: amount
+          description: number of elements to list
+          schema:
+            type: integer
+            default: 10
+            example: 5
+        - in: query
+          name: difficulty
+          description: Difficulty of the treasure
+          schema:
+            type: string
+            example: Medium
+      responses:
+        200:
+          description: (OK) Succesful operation
+          headers:
+            Content-Location:
+              schema:
+                type: string
+              description: >-
+                URL of the representation. Example: http://localhost:8080/geoetsiinf/api/users/obi-one/foundTreasures
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfTreasures'
+        404:
+          $ref: '#/components/responses/NotFound'
+
+  /users/{userName}/foundTreasures/{treasureId}:
+    put:
+      tags:
+        - foundTreasures
+      summary: Adds a treasure to an user's found treasures list
+      parameters:
+        - in: path
+          name: userName
+          description: User name of the user
+          schema:
+            type: string
+          example: obi-wan
+          required: true
+        - in: path
+          name: treasureId
+          description: number that identifies a treasure
+          schema:
+            type: integer
+            minimum: 1
+            example: 500
+          required: true
+      responses:
+        200:
+          description: (OK) Succesful operation
+          headers:
+            Content-Location:
+              schema:
+                type: string
+              description: >-
+                URL of the representation. Example: http://localhost:8080/geoetsiinf/api/users/obi-wan/treasures/1
+        400:
+          $ref: '#/components/responses/BadRequest'
+        404:
+          $ref: '#/components/responses/NotFound'
+
+  /users/{userName}/friends:
+    get:
+      tags:
+        - friends
+      summary: Lists all friends of an user
+      parameters:
+        - in: path
+          description: User name of the user
+          name: userName
+          schema:
+            type: string
+            example: obi-wan
+          required: true
+        - in: query
+          name: name
+          description: filters by first name or pattern.
+          schema:
+            type: string
+          example: Ana -> returns Analuz, Anakin
+        - in: query
+          name: start
+          description: initial element to list
+          schema:
+            type: integer
+            default: 10
+            example: 1
+        - in: query
+          name: amount
+          description: number of elements to list
+          schema:
+            type: integer
+            default: 10
+            example: 5
+      responses:
+        200:
+          description: (OK) Succesful operation
+          headers:
+            Content-Location:
+              schema:
+                type: string
+              description: >-
+                URL of the representation. Example: http://localhost:8080/geoetsiinf/api/user/obi-one/friends
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfUsers'
+
+        404:
+          $ref: '#/components/responses/NotFound'
+
+  /users/{userName}/friends/{friendUserName}:
+    put:
+      tags:
+        - friends
+      summary: Adds a friend to an user's friend list
+      parameters:
+        - in: path
+          name: userName
+          description: User name of the user
+          schema:
+            type: string
+          example: obi-wan
+          required: true
+        - in: path
+          name: friendUserName
+          description: User name of the user to be added as a friend
+          schema:
+            type: string
+            example: luke
+          required: true
+      responses:
+        200:
+          description: (OK) Succesful operation
+          headers:
+            Content-Location:
+              schema:
+                type: string
+              description: >-
+                URL of the representation. Example: http://localhost:8080/geoetsiinf/api/users/obi-wan/friends/obi-wan
+        400:
+          $ref: '#/components/responses/BadRequest'
+        404:
+          $ref: '#/components/responses/NotFound'
+
+    delete:
+      summary: Deletes a friend from an user's friend list
+      tags:
+        - friends
+      parameters:
+        - in: path
+          name: userName
+          description: User name of the user
+          schema:
+            type: string
+          example: obi-wan
+          required: true
+        - in: path
+          name: friendUserName
+          description: User name of the user to be deleted
+          schema:
+            type: integer
+            minimum: 1
+            example: 500
+          required: true
+      responses:
+        204:
+          $ref: '#/components/responses/NoContent'
+        404:
+          $ref: '#/components/responses/NotFound'
+
+  /treasures:
+    get:
+      tags:
+        - treasures
+      summary: Lists all treasures added by an user which are closed to a location
+      parameters:
+        - in: query
+          name: coordinateX
+          description: filter by coordinateX
+          schema:
+            type: number
+            multipleOf: 0.00001
+            minimum: -180
+            maximum: 180
+            example: 54.023
+          required: true
+        - in: query
+          name: coordinateY
+          description: filter by coordinateY
+          schema:
+            type: number
+            multipleOf: 0.00001
+            minimum: -180
+            maximum: 180
+            example: 54.023
+          required: true
+        - in: query
+          name: before
+          description: filter by elements added before a given date
+          schema:
+            type: string
+            format: date
+            example: "2021-03-17"
+        - in: query
+          name: start
+          description: initial element to list
+          schema:
+            type: integer
+            default: 10
+            example: 1
+        - in: query
+          name: amount
+          description: number of elements to list
+          schema:
+            type: integer
+            default: 10
+            example: 5
+        - in: query
+          name: difficulty
+          description: Difficulty of the treasure
+          schema:
+            type: string
+            example: Medium
+      responses:
+        200:
+          description: (OK) Succesful operation
+          headers:
+            Content-Location:
+              schema:
+                type: string
+              description: >-
+                URL of the representation. Example: http://localhost:8080/geoetsiinf/api/users/treasures
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfTreasures'
+            
+
+  /users/{userName}/profile:
+    get:
+      tags:
+        - composites
+      summary: Profile of an user. Contains the user's personal info, the amount of found treasures,
+        the last 5 found treasures, the amount of friends and the amound of added treasures by the user
+      parameters:
+        - in: path
+          name: userName
+          description: User name of the user
+          schema:
+            type: string
+            example: obi-wan
+          required: true
+      responses:
+        200:
+          description: (OK) Succesful operation
+          headers:
+            Content-Location:
+              schema:
+                type: string
+              description: >-
+                URL of the representation. Example: http://localhost:8080/geoetsiinf/api/users/obi-one/profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+            
+        404:
+          $ref: '#/components/responses/NotFound'
+
+components:
+  responses:
+    Created:
+      headers:
+        Location:
+          description: >-
+            URL of the representation. Example: http://localhost:8080/geoetsiinf/api/users/obi-wan
+          schema:
+            type: string
+      description: (OK) Succesful operation
+    BadRequest:
+      description: (BadRequest) Request body is not valid.
+    NotFound:
+      description: (NotFound) Requested resource was not found.
+    NoContent:
+      description: (NoContent) Succesful operation with no content in reponse
+
+  schemas:
+    API:
+      type: object
+      properties:
+        users:
+          type: string
+          description: URL to users resource
+          example: http://localhost:8080/geoetsiinf/api/users
+        treasures:
+          type: string
+          description: URL to treasures resource
+          example: http://localhost:8080/geoetsiinf/api/treasures
+    User:
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: Name of the user
+          example: Obi-Wan
+        href:
+          type: string
+          readOnly: true
+          example: http://localhost:8080/geoetsiinf/api/users/obiwan
+          description: Reference to the user
+          
+        friends:
+          type: string
+          readOnly: true
+          example: http://localhost:8080/geoetsiinf/api/users/obiwan/friends
+          description: Reference to the user's friends
+          
+        treasures:
+          type: string
+          readOnly: true
+          description: Reference to the added treasures of an user
+          example: http://localhost:8080/geoetsiinf/api/users/obiwan/treasures
+          
+        foundTreasures:
+          type: string
+          readOnly: true
+          description: Reference to the treasures an user found
+          example: http://localhost:8080/geoetsiinf/api/users/obiwan/foundTreasures
+          
+        lastName:
+          type: string
+          description: Last name of the user
+          example: Kenovi
+        userName:
+          type: string
+          minLength: 2
+          maxLength: 20
+          description: Alias used by the user in the system
+          readOnly: false
+          example: obiwan
+        email:
+          type: string
+          description: Email of the user
+          example: obiwankenobi@jediorder.org
+        postalCode:
+          description: Postal code of the user
+          type: integer
+          minimum: 01000
+          maximum: 53000
+          example: 28015
+
+    ArrayOfUsers:
+      type: object
+      properties:
+        items:
+          type: array
+          description: Array of users
+          items:
+            $ref: '#/components/schemas/User'
+
+    Treasure:
+      type: object
+      properties:
+        href:
+          type: string
+          readOnly: true
+          example: http://localhost:8080/geoetsiinf/api/treasures/1
+          
+        treasureName:
+          type: string
+          minLength: 2
+          maxLength: 20
+          example: "Lightsaber"
+        coordinateX:
+          type: number
+          multipleOf: 0.00001
+          minimum: -180
+          maximum: 180
+          description: coordinate X of the location of the treasure
+          example: 54.023
+        coordinateY:
+          type: number
+          multipleOf: 0.00001
+          minimum: -180
+          maximum: 180
+          description: Coordinate Y of the location of treasure
+          example: -84.023
+        treasureId:
+          type: integer
+          minimum: 1
+          description: number that identifies the treasure
+          readOnly: true
+          example: 504
+        terrainType:
+          type: string
+          description: Type of terrain where treasure is found
+          minLength: 2
+          maxLength: 20
+          example: "Rocky"
+        difficulty:
+          type: number
+          description: Difficulty of the treasure
+          maximum: 10
+          minimum: 0
+          example: 6
+        size:
+          type: number
+          description: Size of the treasure in cm
+          minimum: 0
+          example: 20.6
+        hint:
+          type: string
+          description: Hint to find the treasure
+          minLength: 2
+          maxLength: 20
+          example: "Behind a T-shaped rock"
+        dateAdded:
+          type: string
+          format: date
+          readOnly: true
+          example: "2021-03-17"
+          
+
+    ArrayOfTreasures:
+      type: object
+      properties:
+        items:
+          type: array
+          description: Array of treasures
+          items:
+            $ref: '#/components/schemas/Treasure'
+
+    Profile:
+      type: object
+      properties:
+        userInfo:
+          $ref: '#/components/schemas/User'
+        foundTreasuresAmount:
+          description: The amount of treasures found by the user
+          type: integer
+          example: 67
+        foundTreasuresList:
+          $ref: '#/components/schemas/ArrayOfTreasures'
+        friends:
+          description: Amount of friends the user has
+          type: integer
+          example: 3
+        addedTreasures:
+          $ref: '#/components/schemas/ArrayOfTreasures'

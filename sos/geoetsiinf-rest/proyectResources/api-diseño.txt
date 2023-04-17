@@ -1,0 +1,87 @@
+--------------------------------------------------------------------------------------------
+-------------------------------------------users--------------------------------------------
+--------------------------------------------------------------------------------------------
+Añadir usuario a GeoETSIINF.
+/users
+POST(content) 
+--------------------------------------------------------------------------------------------
+Obtener un listado con todos los usuarios existentes en la aplicación GeoETSIINF. Esta lista
+puede ser filtrada por patrón de nombre (ej.. Buscar todos los usuarios que contengan
+“Mar” en su nombre, “Mario”, “Maria”…etc.)
+/users?
+GET (query params opcionales)
+--------------------------------------------------------------------------------------------
+---------------------------------users/{id}----------------------------------------------------------
+Consultar los datos básicos de un usuario.
+/users/{id}
+GET
+Cambiar datos básicos del usuario (excepto el nombre de usuario).
+/users/{id}
+PUT
+Borrar nuestro perfil.
+/users/{id}
+DELETE
+--------------------------------------------------------------------------------------------
+-----------------------------usrs/{id}/added_treasures--------------------------------------
+Un usuario podrá añadir un tesoro con unas coordenadas. Este tesoro debe contener las
+indicaciones técnicas y una pista.
+/users/{id}/added_treasures
+POST (content)
+--------------------------------------------------------------------------------------------
+Consultar los tesoros añadidos por un usuario del sistema, pudiendo filtrar por fecha
+(último tesoro antes de cierta fecha) o cantidad de información (e.g. los 10 primeros
+elementos, los elementos entre el 11 y el 20, etc.) y por las indicaciones técnicas del tesoro
+(nivel de dificultad…etc.).
+/users/{id}/added_treasures?
+GET(query params opcionales)
+--------------------------users/{id}/added_treasures/{id}--------------------------------------
+Un usuario podrá editar y eliminar el tesoro que ha añadido.
+/users/{id}/added_treasures/{id_treasure}
+PUT
+DELETE
+--------------------------------------------------------------------------------------------
+--------------------------users/{id}/found_treasures----------------------------------------
+Un usuario debe poder añadir un tesoro encontrado en su histórico de encontrados.
+POST
+users/{id}/found_treasures
+--------------------------------------------------------------------------------------------
+Consultar el histórico de tesoros encontrados por el usuario, pudiendo filtrar por fecha
+(último tesoro antes de cierta fecha) o cantidad de información (e.g. los 10 primeros
+elementos, los elementos entre el 11 y el 20, etc.) y además por las indicaciones técnicas
+del tesoro (nivel de dificultad…etc.).
+users/{id}/found_treasures?
+GET(query params opcionales)
+--------------------------------------------------------------------------------------------
+--------------------------users/{id}/friends----------------------------------------
+Obtener una lista de todos de todos los amigos de un usuario. Además, esta lista debe
+permitir la opción de ser filtrada por el patrón de nombre o limitar la cantidad de
+información obtenida por número de amigos (e.g. los 10 primeros elementos, los elementos
+entre el 11 y el 20, etc.)
+GET
+/users/{id}/friends?
+
+--------------------------users/{id}/friends/{id}----------------------------------------
+Los usuarios además podrán añadir amigos dentro de GeoETSIINF.
+POST
+/users/{id}/friends
+--------------------------------------------------------------------------------------------
+Eliminar un amigo de un usuario
+DELETE
+/users/{id}/friends/{friend_id}
+--------------------------------------------------------------------------------------------
+-------------------------------/users/{id}/profile------------------------------------------
+Consultar fácilmente la descripción necesaria para realizar una aplicación móvil
+que muestre los datos básicos de un usuario, un resumen con la cantidad de tesoros
+encontrados y los últimos 5 tesoros encontrados ordenados por fecha, la cantidad de
+amigos y la cantidad de tesoros añadidos.
+GET
+/users/{id}/profile
+--------------------------------------------------------------------------------------------
+-------------------------------------/treasures---------------------------------------------
+--------------------------------------------------------------------------------------------
+Consultar los tesoros más cercanos a unas coordenadas, pudiendo filtrar por fecha (último
+tesoro antes de cierta fecha) o cantidad de información (e.g. los 10 primeros elementos,
+los elementos entre el 11 y el 20, etc.) y por las indicaciones técnicas del tesoro (nivel de
+dificultad…etc.).
+GET
+/treasures?

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This file was auto-generated from WSDL -->
+<!-- by the Apache Axis2 version: 1.6.2  Built on : Apr 17, 2012 (05:33:49 IST) -->
+<serviceGroup>
+    <service name="UPMGeoCaching" scope="soapsession">
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-only" class="es.upm.fi.sos.UPMGeoCachingMessageReceiverInOnly" />
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="es.upm.fi.sos.UPMGeoCachingMessageReceiverInOut" />
+        </messageReceivers>
+        <parameter name="ServiceClass">es.upm.fi.sos.UPMGeoCachingSkeleton</parameter>
+        <parameter name="useOriginalwsdl">true</parameter>
+        <parameter name="modifyUserWSDLPortAddress">true</parameter>
+        <operation name="logout" mep="http://www.w3.org/ns/wsdl/in-only" namespace="http://sos.fi.upm.es">
+            <actionMapping>urn:logout</actionMapping>
+            <outputActionMapping>urn:logoutResponse</outputActionMapping>
+        </operation>
+        <operation name="removeFollower" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.fi.upm.es">
+            <actionMapping>urn:removeFollower</actionMapping>
+            <outputActionMapping>urn:removeFollowerResponse</outputActionMapping>
+        </operation>
+        <operation name="getMyTreasuresFound" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.fi.upm.es">
+            <actionMapping>urn:getMyTreasuresFound</actionMapping>
+            <outputActionMapping>urn:getMyTreasuresFoundResponse</outputActionMapping>
+        </operation>
+        <operation name="getMyFollowers" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.fi.upm.es">
+            <actionMapping>urn:getMyFollowers</actionMapping>
+            <outputActionMapping>urn:getMyFollowersResponse</outputActionMapping>
+        </operation>
+        <operation name="getMyTreasuresCreated" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.fi.upm.es">
+            <actionMapping>urn:getMyTreasuresCreated</actionMapping>
+            <outputActionMapping>urn:getMyTreasuresCreatedResponse</outputActionMapping>
+        </operation>
+        <operation name="removeUser" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.fi.upm.es">
+            <actionMapping>urn:removeUser</actionMapping>
+            <outputActionMapping>urn:removeUserResponse</outputActionMapping>
+        </operation>
+        <operation name="addFollower" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.fi.upm.es">
+            <actionMapping>urn:addFollower</actionMapping>
+            <outputActionMapping>urn:addFollowerResponse</outputActionMapping>
+        </operation>
+        <operation name="createTreasure" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.fi.upm.es">
+            <actionMapping>urn:createTreasure</actionMapping>
+            <outputActionMapping>urn:createTreasureResponse</outputActionMapping>
+        </operation>
+        <operation name="findTreasure" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.fi.upm.es">
+            <actionMapping>urn:findTreasure</actionMapping>
+            <outputActionMapping>urn:findTreasureResponse</outputActionMapping>
+        </operation>
+        <operation name="addUser" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.fi.upm.es">
+            <actionMapping>urn:addUser</actionMapping>
+            <outputActionMapping>urn:addUserResponse</outputActionMapping>
+        </operation>
+        <operation name="getMyFollowerTreasuresCreated" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.fi.upm.es">
+            <actionMapping>urn:getMyFollowerTreasuresCreated</actionMapping>
+            <outputActionMapping>urn:getMyFollowerTreasuresCreatedResponse</outputActionMapping>
+        </operation>
+        <operation name="changePassword" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.fi.upm.es">
+            <actionMapping>urn:changePassword</actionMapping>
+            <outputActionMapping>urn:changePasswordResponse</outputActionMapping>
+        </operation>
+        <operation name="login" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.fi.upm.es">
+            <actionMapping>urn:login</actionMapping>
+            <outputActionMapping>urn:loginResponse</outputActionMapping>
+        </operation>
+    </service>
+</serviceGroup>

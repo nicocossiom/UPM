@@ -1,0 +1,167 @@
+<wsdl2:description xmlns:wsdl2="http://www.w3.org/ns/wsdl" xmlns:wsoap="http://www.w3.org/ns/wsdl/soap" xmlns:whttp="http://www.w3.org/ns/wsdl/http" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsdlx="http://www.w3.org/ns/wsdl-extensions" xmlns:tns="http://backend.t3.sos.fi.upm.es" xmlns:wrpc="http://www.w3.org/ns/wsdl/rpc" xmlns:ax21="http://backend.t3.sos.fi.upm.es/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://org.apache.axis2/xsd" targetNamespace="http://backend.t3.sos.fi.upm.es">
+    <wsdl2:documentation>UPMAuthenticationAuthorizationWSSkeleton</wsdl2:documentation>
+    <wsdl2:types>
+        <xs:schema xmlns:ns="http://backend.t3.sos.fi.upm.es" xmlns:ax22="http://backend.t3.sos.fi.upm.es/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://backend.t3.sos.fi.upm.es">
+            <xs:import namespace="http://backend.t3.sos.fi.upm.es/xsd" />
+            <xs:element name="removeUser">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="removeUser" nillable="true" type="ax22:RemoveUser" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="removeUserResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:RemoveUserResponse" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="changePassword">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="changePassword" nillable="true" type="ax22:ChangePasswordBackEnd" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="changePasswordResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:ChangePasswordResponse" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="existUser">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="username" nillable="true" type="ax22:Username" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="existUserResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:ExistUserResponse" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="login">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="login" nillable="true" type="ax22:LoginBackEnd" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="loginResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:LoginResponseBackEnd" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="addUser">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="user" nillable="true" type="ax22:UserBackEnd" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="addUserResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:AddUserResponseBackEnd" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:ns="http://backend.t3.sos.fi.upm.es" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://backend.t3.sos.fi.upm.es/xsd">
+            <xs:complexType name="RemoveUser">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+                    <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="RemoveUserResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="result" type="xs:boolean" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ChangePasswordBackEnd">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+                    <xs:element minOccurs="0" name="newpwd" nillable="true" type="xs:string" />
+                    <xs:element minOccurs="0" name="oldpwd" nillable="true" type="xs:string" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ChangePasswordResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="result" type="xs:boolean" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Username">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ExistUserResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="result" type="xs:boolean" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="LoginBackEnd">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+                    <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="LoginResponseBackEnd">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="result" type="xs:boolean" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="UserBackEnd">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="AddUserResponseBackEnd">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+                    <xs:element minOccurs="0" name="result" type="xs:boolean" />
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl2:types>
+    <wsdl2:interface name="ServiceInterface">
+        <wsdl2:operation name="removeUser" style="http://www.w3.org/ns/wsdl/style/rpc" wrpc:signature="removeUser #in return #return " pattern="http://www.w3.org/ns/wsdl/in-out" wsdlx:safe="false">
+            <wsdl2:input element="tns:removeUser" wsaw:Action="urn:removeUser" />
+            <wsdl2:output element="tns:removeUserResponse" wsaw:Action="urn:removeUserResponse" />
+        </wsdl2:operation>
+        <wsdl2:operation name="addUser" style="http://www.w3.org/ns/wsdl/style/rpc" wrpc:signature="user #in return #return " pattern="http://www.w3.org/ns/wsdl/in-out" wsdlx:safe="false">
+            <wsdl2:input element="tns:addUser" wsaw:Action="urn:addUser" />
+            <wsdl2:output element="tns:addUserResponse" wsaw:Action="urn:addUserResponse" />
+        </wsdl2:operation>
+        <wsdl2:operation name="existUser" style="http://www.w3.org/ns/wsdl/style/rpc" wrpc:signature="username #in return #return " pattern="http://www.w3.org/ns/wsdl/in-out" wsdlx:safe="false">
+            <wsdl2:input element="tns:existUser" wsaw:Action="urn:existUser" />
+            <wsdl2:output element="tns:existUserResponse" wsaw:Action="urn:existUserResponse" />
+        </wsdl2:operation>
+        <wsdl2:operation name="login" style="http://www.w3.org/ns/wsdl/style/rpc" wrpc:signature="login #in return #return " pattern="http://www.w3.org/ns/wsdl/in-out" wsdlx:safe="false">
+            <wsdl2:input element="tns:login" wsaw:Action="urn:login" />
+            <wsdl2:output element="tns:loginResponse" wsaw:Action="urn:loginResponse" />
+        </wsdl2:operation>
+        <wsdl2:operation name="changePassword" style="http://www.w3.org/ns/wsdl/style/rpc" wrpc:signature="changePassword #in return #return " pattern="http://www.w3.org/ns/wsdl/in-out" wsdlx:safe="false">
+            <wsdl2:input element="tns:changePassword" wsaw:Action="urn:changePassword" />
+            <wsdl2:output element="tns:changePasswordResponse" wsaw:Action="urn:changePasswordResponse" />
+        </wsdl2:operation>
+    </wsdl2:interface>
+    <wsdl2:binding name="UPMAuthenticationAuthorizationWSSkeletonSoap12Binding" interface="tns:ServiceInterface" type="http://www.w3.org/ns/wsdl/soap" wsoap:version="1.2">
+        <wsdl2:operation ref="tns:removeUser" wsoap:action="urn:removeUser" />
+        <wsdl2:operation ref="tns:addUser" wsoap:action="urn:addUser" />
+        <wsdl2:operation ref="tns:existUser" wsoap:action="urn:existUser" />
+        <wsdl2:operation ref="tns:login" wsoap:action="urn:login" />
+        <wsdl2:operation ref="tns:changePassword" wsoap:action="urn:changePassword" />
+    </wsdl2:binding>
+    <wsdl2:service name="UPMAuthenticationAuthorizationWSSkeleton" interface="tns:ServiceInterface">
+        <wsdl2:endpoint name="UPMAuthenticationAuthorizationWSSkeletonHttpSoap12Endpoint" binding="tns:UPMAuthenticationAuthorizationWSSkeletonSoap12Binding" address="http://138.100.15.190:8080/axis2/services/UPMAuthenticationAuthorizationWSSkeleton.UPMAuthenticationAuthorizationWSSkeletonHttpSoap12Endpoint/" />
+    </wsdl2:service>
+</wsdl2:description>

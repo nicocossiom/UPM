@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl2:description xmlns:wsdl2="http://www.w3.org/ns/wsdl" xmlns:wsoap="http://www.w3.org/ns/wsdl/soap" xmlns:whttp="http://www.w3.org/ns/wsdl/http" xmlns:ns="http://sos.fi.upm.es" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsdlx="http://www.w3.org/ns/wsdl-extensions" xmlns:tns="http://sos.fi.upm.es" xmlns:wrpc="http://www.w3.org/ns/wsdl/rpc" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ax21="http://model.sos.fi.upm.es/xsd" xmlns:ns1="http://org.apache.axis2/xsd" targetNamespace="http://sos.fi.upm.es">
+    <wsdl2:types>
+        <xs:schema xmlns:ax22="http://model.sos.fi.upm.es/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://sos.fi.upm.es">
+            <xs:import namespace="http://model.sos.fi.upm.es/xsd"/>
+            <xs:element name="addFollower">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="args0" nillable="true" type="ax22:Username"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="addFollowerResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:Response"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="removeFollower">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="args0" nillable="true" type="ax22:Username"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="removeFollowerResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:Response"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getMyFollowers">
+                <xs:complexType>
+                    <xs:sequence/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getMyFollowersResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:FollowerList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createTreasure">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="args0" nillable="true" type="ax22:Treasure"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createTreasureResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:Response"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="findTreasure">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="args0" nillable="true" type="ax22:Treasure"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="findTreasureResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:Response"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getMyTreasuresFound">
+                <xs:complexType>
+                    <xs:sequence/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getMyTreasuresFoundResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:TreasureList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getMyTreasuresCreated">
+                <xs:complexType>
+                    <xs:sequence/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getMyTreasuresCreatedResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:TreasureList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getMyFollowerTreasuresCreated">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="args0" nillable="true" type="ax22:Username"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getMyFollowerTreasuresCreatedResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:TreasureList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="addUser">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="args0" nillable="true" type="ax22:Username"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="addUserResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:AddUserResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="login">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="args0" nillable="true" type="ax22:User"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="loginResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:Response"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="logout">
+                <xs:complexType>
+                    <xs:sequence/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="removeUser">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="args0" nillable="true" type="ax22:Username"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="removeUserResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:Response"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="changePassword">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="args0" nillable="true" type="ax22:PasswordPair"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="changePasswordResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:Response"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://model.sos.fi.upm.es/xsd">
+            <xs:complexType name="Username">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="username" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Response">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="response" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="FollowerList">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="followers" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="result" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Treasure">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="altitude" type="xs:double"/>
+                    <xs:element minOccurs="0" name="latitude" type="xs:double"/>
+                    <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TreasureList">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="alts" nillable="true" type="xs:double"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="lats" nillable="true" type="xs:double"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="names" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="result" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="AddUserResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="pwd" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="response" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="User">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="pwd" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PasswordPair">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="newpwd" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="oldpwd" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl2:types>
+    <wsdl2:interface name="ServiceInterface">
+        <wsdl2:operation name="findTreasure" style="http://www.w3.org/ns/wsdl/style/rpc" wrpc:signature="args0 #in return #return " pattern="http://www.w3.org/ns/wsdl/in-out">
+            <wsdl2:input element="ns:findTreasure" wsaw:Action="urn:findTreasure"/>
+            <wsdl2:output element="ns:findTreasureResponse" wsaw:Action="urn:findTreasureResponse"/>
+        </wsdl2:operation>
+        <wsdl2:operation name="addUser" style="http://www.w3.org/ns/wsdl/style/rpc" wrpc:signature="args0 #in return #return " pattern="http://www.w3.org/ns/wsdl/in-out">
+            <wsdl2:input element="ns:addUser" wsaw:Action="urn:addUser"/>
+            <wsdl2:output element="ns:addUserResponse" wsaw:Action="urn:addUserResponse"/>
+        </wsdl2:operation>
+        <wsdl2:operation name="login" style="http://www.w3.org/ns/wsdl/style/rpc" wrpc:signature="args0 #in return #return " pattern="http://www.w3.org/ns/wsdl/in-out">
+            <wsdl2:input element="ns:login" wsaw:Action="urn:login"/>
+            <wsdl2:output element="ns:loginResponse" wsaw:Action="urn:loginResponse"/>
+        </wsdl2:operation>
+        <wsdl2:operation name="getMyFollowerTreasuresCreated" style="http://www.w3.org/ns/wsdl/style/rpc" wrpc:signature="args0 #in return #return " pattern="http://www.w3.org/ns/wsdl/in-out">
+            <wsdl2:input element="ns:getMyFollowerTreasuresCreated" wsaw:Action="urn:getMyFollowerTreasuresCreated"/>
+            <wsdl2:output element="ns:getMyFollowerTreasuresCreatedResponse" wsaw:Action="urn:getMyFollowerTreasuresCreatedResponse"/>
+        </wsdl2:operation>
+        <wsdl2:operation name="changePassword" style="http://www.w3.org/ns/wsdl/style/rpc" wrpc:signature="args0 #in return #return " pattern="http://www.w3.org/ns/wsdl/in-out">
+            <wsdl2:input element="ns:changePassword" wsaw:Action="urn:changePassword"/>
+            <wsdl2:output element="ns:changePasswordResponse" wsaw:Action="urn:changePasswordResponse"/>
+        </wsdl2:operation>
+        <wsdl2:operation name="removeFollower" style="http://www.w3.org/ns/wsdl/style/rpc" wrpc:signature="args0 #in return #return " pattern="http://www.w3.org/ns/wsdl/in-out">
+            <wsdl2:input element="ns:removeFollower" wsaw:Action="urn:removeFollower"/>
+            <wsdl2:output element="ns:removeFollowerResponse" wsaw:Action="urn:removeFollowerResponse"/>
+        </wsdl2:operation>
+        <wsdl2:operation name="getMyTreasuresFound" style="http://www.w3.org/ns/wsdl/style/rpc http://www.w3.org/ns/wsdl/style/iri http://www.w3.org/ns/wsdl/style/multipart" wrpc:signature="return #return " pattern="http://www.w3.org/ns/wsdl/in-out">
+            <wsdl2:input element="ns:getMyTreasuresFound" wsaw:Action="urn:getMyTreasuresFound"/>
+            <wsdl2:output element="ns:getMyTreasuresFoundResponse" wsaw:Action="urn:getMyTreasuresFoundResponse"/>
+        </wsdl2:operation>
+        <wsdl2:operation name="logout" style="http://www.w3.org/ns/wsdl/style/rpc http://www.w3.org/ns/wsdl/style/iri http://www.w3.org/ns/wsdl/style/multipart" wrpc:signature="" pattern="http://www.w3.org/ns/wsdl/in-only">
+            <wsdl2:input element="ns:logout" wsaw:Action="urn:logout"/>
+        </wsdl2:operation>
+        <wsdl2:operation name="removeUser" style="http://www.w3.org/ns/wsdl/style/rpc" wrpc:signature="args0 #in return #return " pattern="http://www.w3.org/ns/wsdl/in-out">
+            <wsdl2:input element="ns:removeUser" wsaw:Action="urn:removeUser"/>
+            <wsdl2:output element="ns:removeUserResponse" wsaw:Action="urn:removeUserResponse"/>
+        </wsdl2:operation>
+        <wsdl2:operation name="addFollower" style="http://www.w3.org/ns/wsdl/style/rpc" wrpc:signature="args0 #in return #return " pattern="http://www.w3.org/ns/wsdl/in-out">
+            <wsdl2:input element="ns:addFollower" wsaw:Action="urn:addFollower"/>
+            <wsdl2:output element="ns:addFollowerResponse" wsaw:Action="urn:addFollowerResponse"/>
+        </wsdl2:operation>
+        <wsdl2:operation name="getMyFollowers" style="http://www.w3.org/ns/wsdl/style/rpc http://www.w3.org/ns/wsdl/style/iri http://www.w3.org/ns/wsdl/style/multipart" wrpc:signature="return #return " pattern="http://www.w3.org/ns/wsdl/in-out">
+            <wsdl2:input element="ns:getMyFollowers" wsaw:Action="urn:getMyFollowers"/>
+            <wsdl2:output element="ns:getMyFollowersResponse" wsaw:Action="urn:getMyFollowersResponse"/>
+        </wsdl2:operation>
+        <wsdl2:operation name="getMyTreasuresCreated" style="http://www.w3.org/ns/wsdl/style/rpc http://www.w3.org/ns/wsdl/style/iri http://www.w3.org/ns/wsdl/style/multipart" wrpc:signature="return #return " pattern="http://www.w3.org/ns/wsdl/in-out">
+            <wsdl2:input element="ns:getMyTreasuresCreated" wsaw:Action="urn:getMyTreasuresCreated"/>
+            <wsdl2:output element="ns:getMyTreasuresCreatedResponse" wsaw:Action="urn:getMyTreasuresCreatedResponse"/>
+        </wsdl2:operation>
+        <wsdl2:operation name="createTreasure" style="http://www.w3.org/ns/wsdl/style/rpc" wrpc:signature="args0 #in return #return " pattern="http://www.w3.org/ns/wsdl/in-out">
+            <wsdl2:input element="ns:createTreasure" wsaw:Action="urn:createTreasure"/>
+            <wsdl2:output element="ns:createTreasureResponse" wsaw:Action="urn:createTreasureResponse"/>
+        </wsdl2:operation>
+    </wsdl2:interface>
+    <wsdl2:binding name="UPMGeoCachingSoap11Binding" interface="tns:ServiceInterface" type="http://www.w3.org/ns/wsdl/soap" wsoap:version="1.1">
+        <wsdl2:operation ref="tns:addUser" wsoap:action="urn:addUser">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:findTreasure" wsoap:action="urn:findTreasure">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:login" wsoap:action="urn:login">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:getMyFollowerTreasuresCreated" wsoap:action="urn:getMyFollowerTreasuresCreated">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:changePassword" wsoap:action="urn:changePassword">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:removeFollower" wsoap:action="urn:removeFollower">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:getMyTreasuresFound" wsoap:action="urn:getMyTreasuresFound">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:logout" wsoap:action="urn:logout">
+            <wsdl2:input/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:removeUser" wsoap:action="urn:removeUser">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:addFollower" wsoap:action="urn:addFollower">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:getMyFollowers" wsoap:action="urn:getMyFollowers">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:getMyTreasuresCreated" wsoap:action="urn:getMyTreasuresCreated">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:createTreasure" wsoap:action="urn:createTreasure">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+    </wsdl2:binding>
+    <wsdl2:binding name="UPMGeoCachingSoap12Binding" interface="tns:ServiceInterface" type="http://www.w3.org/ns/wsdl/soap" wsoap:version="1.2">
+        <wsdl2:operation ref="tns:addUser" wsoap:action="urn:addUser">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:findTreasure" wsoap:action="urn:findTreasure">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:login" wsoap:action="urn:login">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:getMyFollowerTreasuresCreated" wsoap:action="urn:getMyFollowerTreasuresCreated">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:changePassword" wsoap:action="urn:changePassword">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:removeFollower" wsoap:action="urn:removeFollower">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:getMyTreasuresFound" wsoap:action="urn:getMyTreasuresFound">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:logout" wsoap:action="urn:logout">
+            <wsdl2:input/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:removeUser" wsoap:action="urn:removeUser">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:addFollower" wsoap:action="urn:addFollower">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:getMyFollowers" wsoap:action="urn:getMyFollowers">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:getMyTreasuresCreated" wsoap:action="urn:getMyTreasuresCreated">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:createTreasure" wsoap:action="urn:createTreasure">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+    </wsdl2:binding>
+    <wsdl2:binding name="UPMGeoCachingHttpBinding" interface="tns:ServiceInterface" whttp:methodDefault="POST" type="http://www.w3.org/ns/wsdl/http">
+        <wsdl2:operation ref="tns:addUser" whttp:location="addUser">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:findTreasure" whttp:location="findTreasure">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:login" whttp:location="login">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:getMyFollowerTreasuresCreated" whttp:location="getMyFollowerTreasuresCreated">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:changePassword" whttp:location="changePassword">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:removeFollower" whttp:location="removeFollower">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:getMyTreasuresFound" whttp:location="getMyTreasuresFound">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:logout" whttp:location="logout">
+            <wsdl2:input/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:removeUser" whttp:location="removeUser">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:addFollower" whttp:location="addFollower">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:getMyFollowers" whttp:location="getMyFollowers">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:getMyTreasuresCreated" whttp:location="getMyTreasuresCreated">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+        <wsdl2:operation ref="tns:createTreasure" whttp:location="createTreasure">
+            <wsdl2:input/>
+            <wsdl2:output/>
+        </wsdl2:operation>
+    </wsdl2:binding>
+    <wsdl2:service name="UPMGeoCaching" interface="tns:ServiceInterface">
+        <wsdl2:endpoint name="UPMGeoCachingHttpSoap11Endpoint" binding="tns:UPMGeoCachingSoap11Binding" address="http://localhost:8080/axis2/services/UPMGeoCaching"/>
+        <wsdl2:endpoint name="UPMGeoCachingHttpEndpoint" binding="tns:UPMGeoCachingHttpBinding" address="http://localhost:8080/axis2/services/UPMGeoCaching"/>
+        <wsdl2:endpoint name="UPMGeoCachingHttpSoap12Endpoint" binding="tns:UPMGeoCachingSoap12Binding" address="http://localhost:8080/axis2/services/UPMGeoCaching"/>
+    </wsdl2:service>
+</wsdl2:description>
