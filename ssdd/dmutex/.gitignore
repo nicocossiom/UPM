@@ -1,0 +1,12 @@
+.DS_STORE
+*.o
+.vscode/*.log
+.vscode/configurationCache.log
+contolador
+proceso
+.vscode/configurationCache.log
+controlador
+.vscode/launch.json
+.vscode/tasks.json
+controlador
+.vscode/settings.json

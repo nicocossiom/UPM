@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>Ejemplos de sockets (IPv4) - Servidor de eco datagrama secuencial</title>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+</head>
+<body>
+<h1>Ejemplos de sockets</h1>
+<h2>Servidor de eco datagrama secuencial</h2>
+Se trata de la versión con sockets de tipo datagrama del servidor secuencial de eco
+planteado como primer ejemplo.
+<p>
+Arranque el servidor (fichero <tt>eco_serv_udp</tt>) y pruebe a ejecutar clientes
+(fichero <tt>eco_clie_udp</tt>). Observe que, a pesar del carácter secuencial del servidor, el modo de operación no orientado a conexión de los datagramas
+hace que se vayan intercalando las peticiones.
+<p>
+Se ha incluido también el código de un cliente que es válido tanto para sockets
+de tipo <i>stream</i> como datagrama (fichero <tt>eco_clie_tcp_udp</tt>).
+Este ejemplo permite comprender el significado de la operación <tt>connect</tt>
+sobre un socket de tipo datagrama y observar la similitud entre clientes de
+ambos protocolos.
+</body>
+</html>

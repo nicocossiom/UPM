@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>Ejemplos de sockets (IPv4) - Servidor de eco stream concurrente con threads</title>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+</head>
+<body>
+<h1>Ejemplos de sockets</h1>
+<h2>Servidor de eco stream concurrente con threads</h2>
+Este ejemplo plantea proporcionar un servicio de eco concurrente
+usando threads (<tt>pthread_create</tt>).
+<p>El cliente es el mismo que se usó en el primer ejemplo
+(fichero <tt>eco_clie_tcp</tt>), que mantiene la conexión con el
+servidor durante todo su tiempo de vida.
+<p>Ejecute varios clientes para observar cómo el servidor va atendiendo
+sus peticiones de forma concurrente.
+<p>Observe la manera de pasar el socket conectado al thread que se encargará
+del servicio. Se ha pasado por valor, ya que si se hace por referencia,
+se produce una condición de carrera. Un esquema alternativo sería usar
+memoria dinámica: 
+
+<pre>
+	int *s_conec;
+	...........
+        while (1) {
+		s_conec=malloc(sizeof(int));
+                tam_dir=sizeof(dir_cliente);
+                if ((*s_conec=accept(s, (struct sockaddr *)&amp;dir_cliente, &amp;tam_dir))&lt;0){
+                        perror("error en accept");
+                        close(s);
+                        return 1;
+                }
+                pthread_create(&amp;thid, &amp;atrib_th, servicio, s_conec);
+        }
+</pre>
+En este esquema, el thread se encargaría de liberar la memoria dinámica.
+<p>Por último, nótese cómo se crean los threads en modo <i>detached</i>
+para asegurarnos de que liberan sus recursos inmediatamente cuando
+terminan, sin esperar a que se realice un <tt>pthread_join</tt>.
+</body>
+</html>

@@ -1,0 +1,11 @@
+# Ignore all
+*
+!Makefile
+!autores
+# Unignore all with extensions
+!*.*
+# Unignore all dirs
+!*/
+*.o
+.idea/customTargets.xml
+.vscode/targets.log

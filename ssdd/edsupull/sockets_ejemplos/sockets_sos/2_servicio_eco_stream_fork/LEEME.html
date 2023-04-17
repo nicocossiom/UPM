@@ -1,0 +1,19 @@
+<html>
+<head>
+<title>Ejemplos de sockets (IPv4) - Servidor de eco stream concurrente con fork</title>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+</head>
+<body>
+<h1>Ejemplos de sockets</h1>
+<h2>Servidor de eco stream concurrente con fork</h2>
+Este ejemplo plantea proporcionar un servicio de eco concurrente
+usando procesos convencionales (<tt>fork</tt>).
+<p>El cliente es el mismo que se usó en el primer ejemplo
+(fichero <tt>eco_clie_tcp</tt>), que mantiene la conexión con el
+servidor durante todo su tiempo de vida.
+<p>Ejecute varios clientes para observar cómo el servidor va atendiendo
+sus peticiones de forma concurrente.
+<p>Nótese cómo se ignora la señal <tt>SIGCLD</tt> para evitar que los
+procesos hijos de servicio se queden zombis.
+</body>
+</html>

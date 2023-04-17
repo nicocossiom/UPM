@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>Ejemplos de sockets - Acceso a sockets desde STDIO</title>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+</head>
+<body>
+<h1>Ejemplos de sockets (IPv4)</h1>
+<h2>Cliente HTTP usando funciones de E/S estándar de C</h2>
+Este ejemplo muestra el uso de funciones de <tt>stdio</tt> para
+hacer transferencias a través de los sockets, construyendo para ello
+un cliente de HTTP (fichero <tt>cliente_http</tt>).
+<p>
+Como puede observarse en el código, usando <tt>fdopen</tt> se puede asociar
+un <i>stream</i> de <tt>stdio</tt> con un socket, permitiendo usar todas
+la funciones estándar de C para enviar y recibir datos por el socket.
+Nótese que, como se verá en un próximo ejemplo, estas funciones, además de
+ofrecer un mayor grado de abstracción, eliminan el problema de la recepción
+parcial de datos.
+<p>
+Puede probar este programa usando ejemplos como los siguientes:
+<pre>
+./cliente_http www.fi.upm.es 80 /
+./cliente_http laurel.datsi.fi.upm.es  80 /~ssoo/
+</pre>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>Ejemplos de sockets (IPv4) - Servidor de eco stream secuencial</title>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+</head>
+<body>
+<h1>Ejemplos de sockets</h1>
+<h2>Servidor de eco stream secuencial</h2>
+Se trata de un ejemplo básico de sockets <i>stream</i> que consiste en un
+servidor secuencial de eco (fichero <tt>eco_serv_tcp</tt>), que simplemente
+retransmite al cliente los datos que éste le ha enviado.
+<p>
+En cuanto al cliente, se trata de un programa que envía al servidor todo
+lo que lee de la entrada estándar y, a su vez, imprime lo que éste le
+retransmite. Se han planteado dos versiones del cliente:
+<ul>
+<li>Una en la que el cliente mantiene la conexión durante toda su
+interacción (fichero <tt>eco_clie_tcp</tt>).
+<li>Otra en la que el cliente usa una conexión por cada petición
+(fichero <tt>eco_clie_tcp_1pet_por_conexion</tt>).
+</ul>
+Pruebe a ejecutar varios clientes del primer tipo y observe que, debido al
+carácter secuencial del servidor y al modelo de mantenimiento de conexión,
+cada cliente debe esperar a que terminen los clientes previos para
+obtener servicio.
+<p>A continuación, ejecute varios clientes del segundo tipo y compruebe
+que en este caso, a pesar del carácter secuencial del servidor, se van
+intercalando las peticiones.
+
+<p>Obsérvese que se ha incluido en el servidor invocaciones al mandato
+<tt>netstat</tt> que permiten observar la evolución en el estado de los
+sockets involucrados.
+</body>
+</html>

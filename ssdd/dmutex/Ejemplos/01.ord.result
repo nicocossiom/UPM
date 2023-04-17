@@ -1,0 +1,8 @@
+# Ejemplo sencillo de ordenes
+# Procesos: A, B, C
+A: [EVENT]-> A{TICK} B{--} C{--}
+B: [EVENT]-> A{--} B{TICK} C{--}
+C: [EVENT]-> A{--} B{--} C{TICK}
+A: [GETCLOCK]-> A{LC[1,0,0]} B{--} C{--}
+B: [GETCLOCK]-> A{--} B{LC[0,1,0]} C{--}
+C: [GETCLOCK]-> A{--} B{--} C{LC[0,0,1]}

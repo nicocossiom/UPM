@@ -1,0 +1,18 @@
+<html>
+<head>
+<title>Ejemplos de sockets (IPv4) - Servidor de eco stream basado en select</title>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+</head>
+<body>
+<h1>Ejemplos de sockets</h1>
+<h2>Servidor de eco stream basado en select</h2>
+Este ejemplo plantea proporcionar un servicio de eco a múltiples clientes
+usando un servidor secuencial (fichero <tt>eco_serv_select_tcp</tt>) que utiliza <tt>select</tt> para esperar 
+simultáneamente por un evento de cualquier cliente.
+<p>El cliente es el mismo que se usó en el primer ejemplo
+(fichero <tt>eco_clie_tcp</tt>), que mantiene la conexión con el
+servidor durante todo su tiempo de vida.
+<p>Ejecute varios clientes para observar cómo el servidor va atendiendo
+sus peticiones de forma intercalada.
+</body>
+</html>

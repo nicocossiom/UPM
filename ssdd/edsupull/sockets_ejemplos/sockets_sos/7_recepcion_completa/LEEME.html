@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>Ejemplos de sockets (IPv4) - Sobre la recepción parcial de información</title>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+</head>
+<body>
+<h1>Ejemplos de sockets</h1>
+<h2>Cómo asegurar la recepción completa de datos</h2>
+Estos ejemplos ilustran cómo los sockets <i>stream</i> hacen honor
+a su nombre y tienen un comportamiento como un flujo de caracteres,
+fundiéndose dentro del mismo los mensajes recibidos.
+<p>
+En consecuencia, la recepción de datos en un socket de este tipo no
+bloquea hasta que se reciba la cantidad de datos solicitada, sino
+que puede retornar devolviendo una cantidad menor de datos. Esto
+no representa un error, sino que refleja el modo de operación de
+tipo flujo de caracteres característico de esta clase de sockets.
+<p>
+Este comportamiento no es problemático para un número considerable
+de aplicaciones, como, por ejemplo, la transferencia de un fichero.
+Sin embargo, complica la programación de ciertas
+aplicaciones, donde cada petición del cliente ocupa un determinado
+espacio y el servidor quiere recibir una petición completa, y no parte
+de la misma.
+<p>
+Hay varias alternativas a la hora de conseguir que una recepción no se complete
+hasta que estén disponibles todos los datos:
+<ul>
+<li>Programarse un bucle que realice tantas recepciones de datos como
+sean necesarias hasta que, o bien se completa la cantidad de datos
+solicitada o se produce un error. El libro <i>UNIX Network Programming</i>
+de Stevens contiene un ejemplo de esa funcionalidad, mostrando una
+función, denominada <tt>readn</tt>, que lleva a cabo el bucle explicado
+previamente. 
+<li>Trabajar con la E/S de C en lugar de usar las funciones del sistema operativo.
+Una función como <tt>fread</tt> no devuelve el control hasta que se reciben
+todos los datos solicitados. En caso de que la petición se corresponda con
+una línea completa, la función <tt>fgets</tt> no retornará hasta que se haya
+recibido.
+<li>Usar el <i>flag</i> <tt>MSG_WAITALL</tt> en <tt>recv</tt>, que implementa
+justo el comportamiento deseado.
+</ul>
+Para mostrar el problema y las diversas soluciones, se usa una aplicación
+cliente (fichero <tt>cli</tt>) que envía 16 mensajes de 256 bytes y un servidor, con
+múltiples versiones, que simplemente recibe los mensajes e imprime información
+sobre los datos recibidos. Nótese que para poder apreciar el problema de
+las "recepciones incompletas" es necesario ejecutar el cliente y el servidor
+en dos máquinas distintas.
+<p>
+A continuación, se explican las distintas versiones del servidor:
+<ul>
+<li>El fichero <tt>serv0.c</tt> usa directamente la función de recepción.
+Si analizamos la salida que imprime el servidor, se puede apreciar
+que en ocasiones no se recibe la cantidad prevista (256 bytes).
+A continuación, se muestra la traza obtenida durante una ejecución:
+<pre>
+Recibido: tam 256 (mens 0 byte 0 - mens 0 byte 255)
+Recibido: tam 256 (mens 1 byte 0 - mens 1 byte 255)
+Recibido: tam 256 (mens 2 byte 0 - mens 2 byte 255)
+Recibido: tam 256 (mens 3 byte 0 - mens 3 byte 255)
+Recibido: tam 256 (mens 4 byte 0 - mens 4 byte 255)
+Recibido: tam 256 (mens 5 byte 0 - mens 5 byte 255)
+Recibido: tam 168 (mens 6 byte 0 - mens 6 byte 167)
+Recibido: tam 256 (mens 6 byte 168 - mens 7 byte 167)
+Recibido: tam 256 (mens 7 byte 168 - mens 8 byte 167)
+Recibido: tam 256 (mens 8 byte 168 - mens 9 byte 167)
+Recibido: tam 256 (mens 9 byte 168 - mens 10 byte 167)
+Recibido: tam 256 (mens 10 byte 168 - mens 11 byte 167)
+Recibido: tam 168 (mens 11 byte 168 - mens 12 byte 79)
+Recibido: tam 256 (mens 12 byte 80 - mens 13 byte 79)
+Recibido: tam 256 (mens 13 byte 80 - mens 14 byte 79)
+Recibido: tam 256 (mens 14 byte 80 - mens 15 byte 79)
+Recibido: tam 176 (mens 15 byte 80 - mens 15 byte 255)
+</pre>
+Obsérvese que en tres iteraciones la recepción devuelve menos datos de los
+que se ha solicitado (y de los que se ha enviado). Asimismo, se puede
+apreciar que, debido a esta discrepancia, 16 operaciones de envío han
+causado 17 recepciones, y que, a partir de la primera diferencia, cada
+recepción obtiene la parte final de un mensaje y la inicial del siguiente.
+<li>En el fichero <tt>serv1.c</tt> se ha incluido la función <tt>readn</tt>.
+<li>En el fichero <tt>serv2.c</tt> se ha utilizado la función <tt>fread</tt> de C.
+<li>En el fichero <tt>serv3.c</tt> se ha usado el <i>flag</i> <tt>MSG_WAITALL</tt> en <tt>recv</tt>.
+</ul>
+Obviamente, probando esos tres últimos ejemplos, se puede apreciar que desaparece
+el problema y todas las recepciones son del tamaño esperado. 
+</body>
+</html>

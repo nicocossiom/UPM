@@ -1,0 +1,20 @@
+{
+    "C_Cpp.errorSquiggles": "Enabled",
+    "files.associations": {
+        "*.pl": "prolog",
+        "types.h": "c",
+        "stdio.h": "c",
+        "comun.h": "c",
+        "map.h": "c",
+        "socket.h": "c",
+        "in.h": "c",
+        "array": "c",
+        "string_view": "c",
+        "initializer_list": "c",
+        "utility": "c",
+        "edsu.h": "c",
+        "stdlib.h": "c",
+        "set.h": "c",
+        "netdb.h": "c"
+    }
+}

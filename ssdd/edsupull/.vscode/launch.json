@@ -1,0 +1,85 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Launch test",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/mnt/c/users/nicol/UPM/edsupull/edsupull.2022/test/test",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "/mnt/c/users/nicol/UPM/edsupull/edsupull.2022/test/",
+            "environment": [
+                {
+                    "name": "BROKER_PORT",
+                    "value": "8080"
+                },
+                {
+                    "name": "BROKER_HOST",
+                    "value": "127.0.0.1"
+                }
+            ],
+            "console": "internalConsole",
+            "outputCapture": "std",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "make edsu"
+        },
+        // This config launches the file that was compiled by the make task
+        {
+            "name": "launch broker",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/mnt/c/users/nicol/UPM/edsupull/edsupull.2022/broker/broker",
+            "args": [
+                "8080",
+                "ftemas.txt"
+            ],
+            "stopAtEntry": false,
+            "cwd": "/mnt/c/users/nicol/UPM/edsupull/edsupull.2022/broker/",
+            "environment": [],
+            "console": "internalConsole",
+            "outputCapture": "std",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            // THIS IS WHERE WE DEFINE THE TASK WE WANT TO RUN BEFORE RUNNING THE CONFIG
+            "preLaunchTask": "Make Broker All",
+            
+        },
+    ],
+    // Here we define the prompt for the arguments
+    "inputs": [
+        {
+            "id": "someArgs",
+            "type": "promptString",
+            "description": "enter some arguments",
+            "default": ""
+        }
+    ]
+}
