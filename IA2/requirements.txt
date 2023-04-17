@@ -1,0 +1,5 @@
+vincenty >= 0.1.4
+pyqt5-sip >= 12.11.0
+geopy >= 2.3.0
+folium >= 0.13.0
+pyqtwebengine >= 5.15.6
