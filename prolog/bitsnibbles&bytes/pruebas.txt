@@ -1,0 +1,74 @@
+Pruebas para enunciado 1 
+- Una lista con una sola lista de binds que forman un byte
+	byte_list([bind(0),bind(0),bind(0),bind(0),bind(0),bind(0),bind(0),bind(1)])
+- Una lista con varias listas de binds que forman bytes
+	byte_list([
+		[bind(0),bind(0),bind(0),bind(0),bind(0),bind(0),bind(0),bind(1)], 
+		[bind(0),bind(0),bind(0),bind(0),bind(0),bind(0),bind(0),bind(0)],
+		[bind(0),bind(0),bind(0),bind(0),bind(0),bind(1),bind(0),bind(1)],
+		[bind(0),bind(0),bind(0),bind(0),bind(0),bind(1),bind(0),bind(0)]]
+		).
+- Una lista con una sola lista de hexd que forman un byte
+	byte_list([[hexd(0),hexd(1)],[hexd(0),hexd(1)]]).
+- Una lista con varias listas de hexd que forman bytes
+	byte_list([[hexd(0),hexd(a)], [hexd(b),hexd(9)], [hexd(1),hexd(f)],
+	[hexd(5),hexd(6)], [hexd(7),hexd(8)]]).
+
+- Una lista con listas de hexd y binds que forman bytes
+	byte_list([
+		[hexd(0),hexd(a)], 
+		[bind(0),bind(0),bind(0),bind(0),bind(0),bind(1),bind(0),bind(0)]
+	]).
+
+Pruebas para enunciado 2:
+- Pruebas de equivalencia:
+	byte_conversion([hexd(0), hexd(0)], [bind(0),bind(0),bind(0),bind(0),bind(0),bind(0),bind(0),bind(0)]).
+	byte_conversion([hexd(1), hexd(0)], [bind(0),bind(0),bind(0),bind(1),bind(0),bind(0),bind(0),bind(0)]).
+	byte_conversion([hexd(a), hexd(d)], [bind(1),bind(0),bind(1),bind(0),bind(1),bind(1),bind(0),bind(1)]).
+	byte_conversion([hexd(5), hexd(f)], [bind(0),bind(1),bind(0),bind(1),bind(1),bind(1),bind(1),bind(1)]).
+	byte_conversion([hexd(f), hexd(f)], [bind(1),bind(1),bind(1),bind(1),bind(1),bind(1),bind(1),bind(1)]).
+	
+- Pruebas de hex_byte a binary_byte:
+	byte_conversion([hexd(f), hexd(f)], X).
+	byte_conversion([hexd(5), hexd(f)], X).
+
+
+- Pruebas de binary_byte a hex_byte:
+	byte_conversion(L, [bind(1),bind(X),bind(1),bind(1),bind(1),bind(1),bind(1),bind(1)]).
+	byte_conversion(L, [bind(1), bind(1), bind(0), bind(0), bind(1), bind(1), bind(0), bind(0)]).
+
+
+Pruebas enunciado 3:
+- Pruebas de hex_byte a binary_byte: 
+byte_list_conversion([[hexd(3),hexd(5)],[hexd(4),hexd(e)]],BL)
+byte_list_conversion([[hexd(3),hexd(5)],[hexd(4),hexd(e)]],BL).
+
+
+Pruebas enunciado 4:
+get_nth_bit_from_byte(s(s(s(s(s(0))))),[bind(1),bind(0) ,bind(1),bind(0),bind(1),bind(1),bind(0),bind(0)], B).
+get_nth_bit_from_byte(s(s(s(s(s(0))))),[hexd(a),hexd(c)],B).
+get_nth_bit_from_byte(0,[hexd(0),hexd(1)],B).
+get_nth_bit_from_byte(s(0),[bind(0),bind(0) ,bind(0),bind(0),bind(0),bind(0),bind(1),bind(0)], B).
+
+Pruebas enunciado 5:
+	byte_list_clsh([[hexd(0), hexd(0)], [hexd(0), hexd(1)]], L).
+	byte_list_clsh([[hexd(5), hexd(a)], [hexd(2), hexd(3)],
+		[hexd(5), hexd(5)], [hexd(3), hexd(7)]], L).
+
+
+
+Pruebas enunciado 6:
+byte_list_crsh([[hexd(b), hexd(4)], [hexd(4), hexd(6)],[hexd(a), hexd(a)], [hexd(6), hexd(e)]], L).
+
+
+
+Pruebas enunciado 7:
+byte_xor([hexd(5) ,hexd(a)],[hexd(2) ,hexd(3)], B3).
+
+
+
+Pruebas extra:
+rotate_left([bind(0), bind(1), bind(1)], X).
+my_flattener([[bind(0),bind(1)], [bind(0)]],X).
+
+my_flattener([[bind(0),bind(0) ,bind(0),bind(0),bind(0),bind(0),bind(1),bind(0)], [bind(0),bind(0) ,bind(0),bind(0),bind(0),bind(0),bind(1),bind(0)]],X).
