@@ -1,0 +1,1363 @@
++ INVOCACION '/home/jail/home2/datsi/ssoo/soX/msh/src/check.msh-4.5.3 -2021b'
++ :
++ : '	 "Corrector de la práctica del Minishell. Versión 4.5.3"'
++ : '	 "Copyright © 1993-2020 Francisco Rosales «frosal@fi.upm.es»"'
++ :
++ : '	 FECHA: "Sun Dec 19 18:09:47 CET 2021"'
++ : '	 GRUPO: "b190168"'
++ : '	 AUTORES: "problemas-PP
+Astudillo
+Aguiar
+Alejandro
+190168"'
++ :
++ INTRODUCCION
++ :
++ : 'El presente texto es la traza de ejecución de las pruebas'
++ : 'realizadas sobre su práctica del Minishell.'
++ :
++ : 'Las líneas de este texto que comienzan por "+" son mandatos'
++ : 'de un Bourne Shell que tiene tal carácter como prompt.'
++ : 'El mandato ":" es el mandato nulo.'
++ :
++ : 'Para localizar rápidamente las partes de interés de este texto,'
++ : 'buscad la tira "########## ATENCIÓN ##########" .'
++ :
++ : Nota:
++ : '	 Esta utilidad se encuentra EN DESARROLLO.'
++ : '	 Los RESULTADOS obtenidos NO son DEFINITIVOS y, por tanto,'
++ : '	 la VALORACIÓN obtenida NO se entenderá como DEFINITIVA.'
++ :
++ DONDE_OBTENER_AYUDA
++ :
++ : 'La información básica necesaria para la realización de esta'
++ : 'práctica se encuentra en los siguientes documentos:'
++ : ' #	 Memoria de la práctica. Contiene información abundante'
++ : '	 y detallada sobre el comportamiento deseado, y muchas'
++ : '	 referencias a las funciones que se deben usar.'
++ : ' #	 Manual de UNIX. En caso de duda sobre como usar una'
++ : '	 función de librería o mandato, utilice el mandato man.'
++ : ' #	 Libros de C. La bibliografía sobre este lenguaje es muy'
++ : '	 extensa. Sea meticuloso y limpio a la hora de programar'
++ : '	 y no deje de comentar debidamente su propio código.'
++ :
++ :
++ PREPARACION_DEL_ENTORNO_DE_TRABAJO =====================================
++ :
++ Crear_nulo _______________________________________________ previo ______
++ :
++ '[' -f :.c ']'
++ : 'Ya existe.'
++ make :
+make: ':' is up to date.
++ ./: Bien.
++ :
++ Crear_freefds ____________________________________________ previo ______
++ :
++ '[' -f freefds.c ']'
++ : 'Ya existe.'
++ make freefds
+make: 'freefds' is up to date.
++ : Bien.
++ :
++ Crear_nofiles ____________________________________________ previo ______
++ :
++ '[' -f nofiles.c ']'
++ : 'Ya existe.'
++ make nofiles
+make: 'nofiles' is up to date.
++ : Bien.
++ :
++ : 'Recordamos el numero de descriptores de fichero disponibles.'
+++ ./nofiles
++ NOFILES=1024
++ :
++ Crear_killmyself _________________________________________ previo ______
++ :
++ '[' -f killmyself.c ']'
++ : 'Ya existe.'
++ make killmyself
+make: 'killmyself' is up to date.
++ : Bien.
++ :
++ Crear_sigdfl _____________________________________________ previo ______
++ :
++ '[' -f sigdfl.c ']'
++ : 'Ya existe.'
++ make sigdfl
+make: 'sigdfl' is up to date.
++ : Bien.
++ :
++ Eliminar_ficheros_temporales _____________________________ previo ______
++ :
++ : 'Borramos los ficheros temporales que se utilizan.'
++ :
++ rm -f .aux .aux2 .aux3 .void .doit .env .ls1
++ rm -f .rm .out .out2 .ddf .pwd .cd .home
++ :
++ Establecer_entorno _______________________________________ previo ______
++ :
++ : 'Antes de continuar, establecemos el entorno que será heredado por'
++ : 'todo mandato que se ejecute a partir de ahora.'
++ :
++ umask 0
++ PATH=/bin:/usr/bin:/usr/local/bin:.
++ HOME=/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
++ WHO=b190168
++ export PATH HOME WHO
++ :
++ Compilar_el_Minishell ____________________________________ previo ______
++ :
++ make msh
+gcc -Wall -g   -c -o main.o main.c
+gcc -Wall -g  -o msh parser.o scanner.o main.o
++ : Bien.
++ :
++ :
++ PRINCIPIO_DE_LA_CORRECCION =============================================
++ :
++ LEVEL=0
++ :
++ case "$COMPLEX" in
++ Lineas_simples_y_fin_de_fichero ________________________________________
++ :
++ : 'Su Minishell debe aceptar líneas en blanco y mandatos simples'
++ : 'y debe terminar limpiamente cuando se cierre su entrada estándar.'
++ :
++ MSHPID=29173
++ ./msh
++ wait 29173
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> 
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> 
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168>      
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> 		 
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /usr/bin/env
+PWD=/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+HOME=/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+WHO=b190168
+TMPDIR=/tmp
+SHLVL=0
+PATH=/bin:/usr/bin:/usr/local/bin:.
+_=./msh
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/echo
+
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ../../../../../../../../../../bin/echo
+
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ./:
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> 
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> 
++ EXIT=0
++ case $EXIT in
++ : 0
++ : Bien.
++ :
++ Ejecucion_del_Minishell ________________________________________________
++ :
++ : 'Preparamos una tubería por la que inyectar mandatos al Minishell'
++ : 'y lanzamos su ejecución.'
++ :
++ rm -f .pipe
++ mkfifo .pipe
++ MSHPID=29182
++ exec
++ exec ./sigdfl ./msh
++ rm -f .pipe
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + :
++ LEVEL=5
++ :
++ Mandatos_sin_argumentos ________________________________________________
++ :
++ : 'Se ejecutan mandatos, que están en el PATH, sin argumentos.'
++ :
+./:
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> :
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo
+
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + :
++ Mandatos_con_varios_argumentos _________________________________________
++ :
++ : 'Se ejecutan mandatos, que están en el PATH, CON varios argumentos.'
++ :
++ : '	NOTA:'
++ : '	El siguiente mandato: "/bin/kill -KILL ##"'
++ : '	aparecerá en multitud de ocasiones en el presente texto.'
++ : '	Se utiliza para sincronizar la ejecución de dos procesos'
++ : '	el Minishell y el Corrector que le inyecta mandatos.'
++ : '		IGNÓRELO'
++ Sincronizar
+/bin/kill -KILL 29192
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> rm -f .aux
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> touch .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> :
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : El mandato "touch" debe haber creado el fichero ".aux".
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : Veamos si existe, usando ls.
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> :
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l -a -1 -F -g -q -s .aux
+0 -rw-rw-rw- 1 jail 0 Dec 19 18:09 .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> :
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29195
++ '[' -f .aux ']'
++ : 'Cierto. Bien.'
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + :
+: Ahora lo + Sincronizar
+borramos.
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> rm -f .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux
+ls: cannot access '.aux': No such file or directory
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29206
++ '[' -f .aux ']'
++ : 'Falso. Bien.'
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + rm -f .aux
++ :
++ Descriptores_de_fichero ________________________________________________
++ :
++ : 'El numero de descriptores de fichero usados por el Minishell'
++ : 'debe mantenerse estable durante toda la ejecución del mismo.'
++ :
++ : '«««   Se deben cerrar los que NO se vayan a usar.   »»»'
++ :
+./freefds
++ Sincronizar
+1019
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ./freefds
+1019
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ./freefds .ddf
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat .ddf
+1019
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ./freefds
+1019
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ./freefds
+1019
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ./freefds .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat .aux
+1019
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cmp .ddf .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29211
++ cmp -s .ddf .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + : 'Cierto. Bien.'
++ rm -f .aux
++ :
++ LEVEL=10
++ :
++ Redireccion_de_salida_a_fichero_nuevo __________________________________
++ :
++ : '«««   Se debe crear el fichero.   »»»'
++ :
+last + Sincronizar
+-n 10 b190168 > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat .aux
+
+wtmp begins Fri Dec 17 00:01:14 2021
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29224
++ '[' -f .aux ']'
++ : 'Cierto. Bien.'
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + rm -f .aux
++ :
++ Redireccion_de_salida_a_fichero_existente ______________________________
++ :
++ : '«««   Se debe truncar el fichero.   »»»'
++ :
+touch .void
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat .void > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cmp .void .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29229
++ cmp -s .void .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + : 'Cierto. Bien.'
++ rm -f .aux .void
++ :
++ Redireccion_de_entrada_a_fichero_no_existente __________________________
++ :
++ : 'El Minishell debe tolerar los errores cometidos por el usuario:'
++ : '«««   Se debe detectar, notificar y tolerar el error.      »»»'
++ : '«««   Se debe abortar la ejecución del resto de la linea.  »»»'
++ :
+touch .aux
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> rm -f .aux2
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> rm -f .noexiste
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux .aux2 .noexiste
+ls: cannot access '.aux2': No such file or directory
+ls: cannot access '.noexiste': No such file or directory
+-rw-rw-rw- 1 jail jail 0 Dec 19 18:09 .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : NO debería borrarse el fichero ".aux".
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : Debería crearse el fichero ".aux2".
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> rm -f .aux < .noexiste
+Error en la redirección: No such file or directory
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> touch .aux2
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux .aux2 .noexiste
+ls: cannot access '.noexiste': No such file or directory
+-rw-rw-rw- 1 jail jail 0 Dec 19 18:09 .aux
+-rw-rw-rw- 1 jail jail 0 Dec 19 18:09 .aux2
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29236
++ '[' -f .aux2 ']'
++ : 'Cierto. Bien.'
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + rm -f .aux2
++ :
++ '[' -f .aux ']'
++ : 'Cierto. Bien.'
++ rm -f .aux
++ :
++ Redireccion_de_entrada_a_fichero_existente _____________________________
++ :
++ : '«««   Se debe abrir para lectura.   »»»'
++ :
+touch .aux
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo rm .aux > .doit
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> sh < .doit
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : Debería borrarse el fichero ".aux".
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux
+ls: cannot access '.aux': No such file or directory
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29249
++ '[' -f .aux ']'
++ : 'Falso. Bien.'
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + rm -f .doit
++ :
++ LEVEL=15
++ :
++ Redireccion_de_entrada_y_salida_simultaneamente ________________________
++ :
++ : '«««   Se deben poder hacer simultáneamente.   »»»'
++ :
+env > .env+ Sincronizar
+
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat < .env > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cmp .env .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29258
++ cmp -s .env .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + : 'Cierto. Bien.'
++ rm -f .aux .env
++ :
++ Descriptores_de_fichero_tras_redirecciones _____________________________
++ :
++ : '«««   Se deben cerrar los que NO se usen.   »»»'
++ :
+./freefds
++ Sincronizar
+1019
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ./freefds
+1019
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ./freefds .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat .aux
+1019
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cmp .ddf .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29265
++ cmp -s .ddf .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + : 'Cierto. Bien.'
++ rm -f .aux
++ :
++ LEVEL=20
++ :
++ Secuencia_sin_redirecciones_I __________________________________________
++ :
++ : '«««   Se debe esperar por el último mandato.   »»»'
++ :
++ cron_ON
++ CLOCK=65389
+sleep+ Sincronizar
+ 10 | sleep 10 | sleep 0
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29279
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ cron_OFF
++ '[' 0 -lt 9 ']'
++ : 'Cierto. Bien.'
++ :
++ Secuencia_sin_redirecciones_II _________________________________________
++ :
++ : '«««   Se debe conectar salida con entrada del siguiente.   »»»'
++ :
+touch .aux
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux
+-rw-rw-rw- 1 jail jail 0 Dec 19 18:09 .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo rm .aux | cat | cat | sh
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : Debería borrarse el fichero ".aux".
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux
+ls: cannot access '.aux': No such file or directory
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29288
++ '[' -f .aux ']'
++ : 'Falso. Bien.'
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + :
++ Descriptores_de_fichero_tras_secuencias_I ______________________________
++ :
++ : '«««   Se deben cerrar los que NO se usen.   »»»'
++ :
+./freefds
++ Sincronizar
+1019
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ./freefds
+1019
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ./freefds .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat .aux
+1019
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cmp .ddf .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29298
++ cmp -s .ddf .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + : 'Cierto. Bien.'
++ rm -f .aux
++ :
++ LEVEL=25
++ :
++ Secuencia_con_redireccion_de_salida ____________________________________
++ :
++ : '«««   Se debe redirigir la salida del último mandato.   »»»'
++ :
+rm .ls1
++ Sincronizar
+rm: cannot remove '.ls1': No such file or directory
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -1 / > .ls1
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> sort .ls1 > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> rev .aux > .ls1
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : El resultado de la anterior secuencia de mandatos y
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : del secuencia siguiente, ha de ser el mismo.
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -1 / | sort | rev > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux .ls1
+-rw-rw-rw- 1 jail jail 168 Dec 19 18:09 .aux
+-rw-rw-rw- 1 jail jail 168 Dec 19 18:09 .ls1
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cmp .aux .ls1
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29307
++ cmp -s .aux .ls1
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + : 'Cierto. Bien.'
++ rm -f .aux .ls1
++ :
++ Secuencia_con_redireccion_de_entrada ___________________________________
++ :
++ : '«««   Se debe redirigir la entrada del primer mandato.   »»»'
++ :
+echo rm .aux > .aux
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> rev .aux > .rm
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> rev | cat | cat | sh < .rm
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : Debería borrarse el fichero ".aux".
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux
+ls: cannot access '.aux': No such file or directory
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29322
++ '[' -f .aux ']'
++ : 'Falso. Bien.'
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + rm -f .rm
++ :
++ Secuencia_con_redireccion_de_entrada_y_salida __________________________
++ :
++ : '«««   Se debe redirigir la entrada del primer   »»»'
++ : '«««   mandato y la salida del último.           »»»'
++ :
+echo rm .aux ; echo+ Sincronizar
+ Fue bien > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> rev .aux > .rm
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat | rev | cat | sh < .rm > .out
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : Debería borrarse el fichero ".aux".
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux
+ls: cannot access '.aux': No such file or directory
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29334
++ '[' -f .aux ']'
++ : 'Falso. Bien.'
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + rm -f .rm
++ :
+: Debería crearse el fichero ".out" con el texto+ Sincronizar
+ "Fue bien".
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat .out
+Fue bien
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29347
++ cmp -s .out .out2
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + : 'Cierto. Bien.'
++ rm -f .out .out2
++ :
++ Descriptores_de_fichero_tras_secuencias_II _____________________________
++ :
++ : '«««   Se deben cerrar los que NO se usen.   »»»'
++ :
+./freefds
++ Sincronizar
+1019
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ./freefds
+1019
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ./freefds .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat .aux
+1019
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cmp .ddf .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29352
++ cmp -s .ddf .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + : 'Cierto. Bien.'
++ rm -f .aux
++ rm -f .ddf
++ :
++ LEVEL=30
++ :
++ Mandatos_en_Background_I _______________________________________________
++ :
++ : '«««   Se deben ejecutar correctamente.   »»»'
++ :
+touch .aux
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux
+-rw-rw-rw- 1 jail jail 0 Dec 19 18:09 .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> rm -f .aux &
+[29364]
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> rm -f .aux &
+[29365]
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> rm -f .aux &
+[29366]
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> 
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29362
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : Debería borrarse el fichero ".aux".
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux
+ls: cannot access '.aux': No such file or directory
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29370
++ '[' -f .aux ']'
++ : 'Falso. Bien.'
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + :
++ Mandatos_en_Background_II ______________________________________________
++ :
++ : '«««   No se debe esperar por ellos.   »»»'
++ :
++ cron_ON
++ CLOCK=65389
+sleep 10 &
+[29375]
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + Sincronizar
+sleep 10 &
+[29376]
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> sleep 10 &
+[29377]
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29378
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ cron_OFF
++ '[' 0 -lt 5 ']'
++ : 'Cierto. Bien.'
++ :
++ Mandatos_en_Background_III _____________________________________________
++ :
++ : '«««   Se debe esperar por el mandato en foreground.   »»»'
++ :
+touch .aux
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux
+-rw-rw-rw- 1 jail jail 0 Dec 19 18:09 .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> sleep 0 &
+[29388]
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> sleep 0 &
+[29389]
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> sleep 0 &
+[29390]
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo sleep 1; rm -f .aux | sh
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux
+ls: cannot access '.aux': No such file or directory
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29387
++ '[' -f .aux ']'
++ : 'Falso. Bien.'
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + :
++ LEVEL=35
++ :
++ Senyales_I _____________________________________________________________
++ :
++ :
++ : 'El Minishell ha de manejar correctamente las señales generables'
++ : 'desde teclado que son SIGINT y SIGQUIT.'
++ :
++ : '«««   Deben ser ignoradas o capturadas por el Minishell.   »»»'
++ :
++ : 'Se arranca otro Minishell con el siguiente PID:'
++ PID=29399
++ ./sigdfl ./msh
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29400
++ : 'Se intenta matar con las señales INT, QUIT y KILL en ese orden.'
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + kill -INT 29399
++ kill -QUIT 29399
++ kill -KILL 29399
++ wait 29399
+/home/jail/home2/datsi/ssoo/soX/msh/src/check.msh-4.5.3: line 1448: 29399 Killed                  ./sigdfl $BIN < $PIPE
++ EXIT=137
++ case $EXIT in
++ : 137
++ : 'SIGKILL mata al Minishell, como debe ser. Bien.'
++ :
++ Senyales_II ____________________________________________________________
++ :
++ : '«««   Deben ser ignoradas por los procesos en background.   »»»'
++ :
+touch .aux
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux
+-rw-rw-rw- 1 jail jail 0 Dec 19 18:09 .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ./killmyself -INT &
+[29406]
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ./killmyself -INT &
+[29407]
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ./killmyself -INT &
+[29408]
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> 
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29404
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : Debería borrarse el fichero ".aux".
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux
+ls: cannot access '.aux': No such file or directory
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29411
++ '[' -f .aux ']'
++ : 'Falso. Bien.'
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + :
++ Senyales_III ___________________________________________________________
++ :
++ : '«««   Deben ser la acción por defecto para procesos en foreground.   »»»'
++ :
+touch .aux
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux
+-rw-rw-rw- 1 jail jail 0 Dec 19 18:09 .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : NO debería borrarse el fichero ".aux".
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ./killmyself -INT
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux
+-rw-rw-rw- 1 jail jail 0 Dec 19 18:09 .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29415
++ '[' -f .aux ']'
++ : 'Cierto. Bien.'
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + rm -f .aux
++ :
++ LEVEL=40
++ :
++ Interno_cd_I ___________________________________________________________
++ :
++ : 'Cuando se invoca en foreground y es el último:'
++ : '«««   Se debe ejecutar como llamada al sistema.   »»»'
++ :
+pwd
++ Sincronizar
+/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cd ..
+/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13> cd b190168
+/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cd ./..
+/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13> pwd
+/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13> pwd > /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168/.pwd
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13> cat /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168/.pwd
+/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13> cd /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29423
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ cd ..
+++ pwd
+++ cat /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168/.pwd
++ '[' /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13 = /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13 ']'
++ : 'Cierto. Bien.'
++ :
++ Interno_cd_II __________________________________________________________
++ :
++ : 'El mandato "cd" siempre:'
++ : '«««   Debe mostrar el "current working directory"   »»»'
++ : '«««   por la salida estándar con formato "%s\n".    »»»'
++ :
+cd ..
+/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13> cd . > + Sincronizar
+/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168/.cd
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13> cat /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168/.cd
+/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13> cmp /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168/.pwd /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168/.cd
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13> cd /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29431
++ cmp -s /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168/.pwd /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168/.cd
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + : 'Cierto. Bien.'
++ rm -f .pwd .cd
++ :
++ Interno_cd_III _________________________________________________________
++ :
++ : 'Cuando se invoca "cd" sin argumentos:'
++ : '«««   Debe cambiar al directorio HOME.   »»»'
++ :
+cd ..
+/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13> cd
+/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + Sincronizar
+pwd > /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168/.home
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168/.home
+/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cd /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29438
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ cat /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168/.home
++ '[' /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168 = /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168 ']'
++ : 'Cierto. Bien.'
++ rm -f .home
++ :
++ Interno_cd_IV __________________________________________________________
++ :
++ : 'Si se intenta cambiar a un directorio no existente:'
++ : '«««   Se debe notificar el error.   »»»'
++ :
++ Sincronizar
+cd ...
+cd: No such file or directory
+/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29443
++ :
++ : 'Si se invoca con demasiados argumentos:'
++ : '«««   Se debe notificar el error.   »»»'
++ :
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cd a b
+cd: demasiados argumentos
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cd /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29445
++ :
++ LEVEL=45
++ :
++ Interno_umask_I ________________________________________________________
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + :
++ : 'Cuando se invoca "umask" sin argumentos:'
++ : '«««   Se debe mostrar la mascara de creación de ficheros,   »»»'
++ : '«««   por la salida estándar con formato "%o\n".            »»»'
++ :
+umask
+0
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + Sincronizar
+umask > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat .aux
+0
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29447
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ cat .aux
++ '[' 0 -eq 0 ']'
++ : 'Cierto. Bien.'
++ rm -f .aux
++ :
++ Interno_umask_II _______________________________________________________
++ :
++ : 'Cuando se invoca "umask" sin argumentos:'
++ : '«««   No se debe modificar el valor actual de la mascara.   »»»'
++ :
+umask > .aux
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : Debería crearse con permisos "rw-rw-rw-"
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux
+-rw-rw-rw- 1 jail jail 2 Dec 19 18:09 .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29453
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ ls -l .aux
+++ cut -c-10
++ '[' -rw-rw-rw- = -rw-rw-rw- ']'
++ : 'Cierto. Bien.'
++ :
+chmod +x + Sincronizar
+.aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : Debería cambiarse a permisos "rwxrwxrwx"
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux
+-rwxrwxrwx 1 jail jail 2 Dec 19 18:09 .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29460
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ ls -l .aux
+++ cut -c-10
++ '[' -rwxrwxrwx = -rwxrwxrwx ']'
++ : 'Cierto. Bien.'
++ :
++ Interno_umask_III ______________________________________________________
++ :
++ : 'Cuando se invoca "umask" con un argumento:'
++ : '«««   Se debe modificar el valor actual de la mascara      »»»'
++ : '«««   con el valor del argumento interpretado en base 8.   »»»'
++ :
+chmod 0 .aux
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : Debería cambiarse a permisos "---------"
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux
+---------- 1 jail jail 2 Dec 19 18:09 .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> umask 026
+26
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> chmod +rwx .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : Debería cambiarse a permisos "rwxr-x--x"
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux
+-rwxr-x--x 1 jail jail 2 Dec 19 18:09 .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29468
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ ls -l .aux
+++ cut -c-10
++ '[' -rwxr-x--x = -rwxr-x--x ']'
++ : 'Cierto. Bien.'
++ :
++ Interno_umask_IV _______________________________________________________
++ :
++ : 'Cuando se invoca "umask" con un argumento erróneo:'
++ : '«««   Se debe notificar el error.                           »»»'
++ : '«««   No se debe modificar el valor actual de la mascara.   »»»'
++ :
+chmod 0 .aux
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : Debería cambiarse a permisos "---------"
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux
+---------- 1 jail jail 2 Dec 19 18:09 .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> umask 888
+Valor de la máscara introducido incorrecto
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> chmod +rwx .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : Debería cambiarse a permisos "rwxr-x--x"
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux
+-rwxr-x--x 1 jail jail 2 Dec 19 18:09 .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29479
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ ls -l .aux
+++ cut -c-10
++ '[' -rwxr-x--x = -rwxr-x--x ']'
++ : 'Cierto. Bien.'
++ :
++ Interno_umask_V ________________________________________________________
++ :
++ : 'Cuando se invoca "umask" con un numero de argumentos erróneo:'
++ : '«««   Se debe notificar el error.                           »»»'
++ : '«««   No se debe modificar el valor actual de la mascara.   »»»'
++ :
+chmod 0 .aux
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : Debería cambiarse a permisos "---------"
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux
+---------- 1 jail jail 2 Dec 19 18:09 .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> umask 115 0
+umask: demasiados argumentos
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> chmod +rwx .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : Debería cambiarse a permisos "rwxr-x--x"
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ls -l .aux
+-rwxr-x--x 1 jail jail 2 Dec 19 18:09 .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29490
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ ls -l .aux
+++ cut -c-10
++ '[' -rwxr-x--x = -rwxr-x--x ']'
++ : 'Cierto. Bien.'
++ rm -f .aux
++ :
++ LEVEL=50
++ :
++ case "$TURN" in
++ Interno_limit_I ________________________________________________________
++ :
++ : 'Cuando se invoca "limit" sin argumentos:'
++ : '«««   Se deben mostrar todos los limites del proceso   »»»'
++ : '«««   por la salida estándar.                          »»»'
++ :
+limit
+cpu	150
+fsize	-1
+data	-1
++ Sincronizar
+stack	-1
+core	-1
+nofile	1024
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> limit > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat .aux
+cpu	150
+fsize	-1
+data	-1
+stack	-1
+core	-1
+nofile	1024
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29501
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ grep nofile .aux
+++ sed 's/[^0-9]*//'
++ '[' 1024 -eq 1024 ']'
++ : 'Cierto. Bien.'
++ rm -f .aux
++ :
++ Interno_limit_II _______________________________________________________
++ :
++ : 'El mandato "limit" siempre:'
++ : '«««   Se debe poder ejecutar en una secuencia.   »»»'
++ :
+limit
+cpu	150
+fsize	-1
+data	-1
++ Sincronizar
+stack	-1
+core	-1
+nofile	1024
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> limit | grep nofile | sed s/[^0-9]*// > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat .aux
+1024
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29511
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ cat .aux
++ '[' 1024 -eq 1024 ']'
++ : 'Cierto. Bien.'
++ rm -f .aux
++ :
++ LEVEL=55
++ :
++ Interno_limit_III ______________________________________________________
++ :
++ : 'Cuando se invoca "limit" con un argumento:'
++ : '«««   Se deben mostrar el limite actual del recurso   »»»'
++ : '«««   por la salida estándar.                         »»»'
++ :
+limit + Sincronizar
+nofile | sed s/[^0-9]*// > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat .aux
+1024
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29517
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ cat .aux
++ '[' 1024 -eq 1024 ']'
++ : 'Cierto. Bien.'
++ rm -f .aux
++ :
++ Interno_limit_IV _______________________________________________________
++ :
++ : 'Cuando se invoca "limit" con argumentos:'
++ : '«««   Se deben cambiar el limite actual del recurso.   »»»'
++ :
+limit nofile 30
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> limit nofile | sed s/[^0-9]*// > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat .aux
+30
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29525
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ cat .aux
++ '[' 30 -eq 30 ']'
++ : 'Cierto. Bien.'
++ rm -f .aux
++ :
++ Interno_limit_V ________________________________________________________
++ :
++ : 'Cuando se invoca "limit" con argumento erróneo:'
++ : '«««   Se debe notificar el error.             »»»'
++ : '«««   No se debe modificar el valor actual.   »»»'
++ :
+limit+ :
+ + : 'Cuando se invoca "limit" con un numero erróneo de argumentos:'
+onfile + : '«««   Se debe notificar el error.             »»»'
+30
++ : '«««   No se debe modificar el valor actual.   »»»'
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + :
+limit nofile 20 + Sincronizar
+40
+limit: demasiados argumentos
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> limit nofile | sed s/[^0-9]*// > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat .aux
+30
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29531
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ cat .aux
++ '[' 30 -eq 30 ']'
++ : 'Cierto. Bien.'
++ rm -f .aux
++ :
++ LEVEL=60
++ :
++ Interno_set_I __________________________________________________________
++ :
++ : 'Cuando se invoca "set" sin argumentos:'
++ : '«««   Se deben mostrar todas las variables de entorno   »»»'
++ : '«««   por la salida estándar.                           »»»'
++ :
+set
+PWD=/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+HOME=/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
++ Sincronizar
+WHO=b190168
+TMPDIR=/tmp
+SHLVL=0
+PATH=/bin:/usr/bin:/usr/local/bin:.
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> set > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat .aux
+PWD=/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+HOME=/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+WHO=b190168
+TMPDIR=/tmp
+SHLVL=0
+PATH=/bin:/usr/bin:/usr/local/bin:.
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29538
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ grep HOME .aux
+++ sed s/HOME=//
++ '[' /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168 = /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168 ']'
++ : 'Cierto. Bien.'
++ rm -f .aux
++ :
++ Interno_set_II _________________________________________________________
++ :
++ : '«««   Todo mandato interno debe poder ejecutar      »»»'
++ : '«««   como parte de una secuencia, también "set".   »»»'
++ :
+set
+PWD=/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+HOME=/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+WHO=b190168
++ Sincronizar
+TMPDIR=/tmp
+SHLVL=0
+PATH=/bin:/usr/bin:/usr/local/bin:.
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> set | grep HOME | sed s/HOME=// > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat .aux
+/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29545
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ cat .aux
++ '[' /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168 = /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168 ']'
++ : 'Cierto. Bien.'
++ rm -f .aux
++ :
++ LEVEL=65
++ :
++ Interno_set_III ________________________________________________________
++ :
++ : 'Cuando se invoca "set" con un argumentos:'
++ : '«««   Se deben mostrar el valor actual de la variable   »»»'
++ : '«««   por la salida estándar.                           »»»'
++ :
+set
+PWD=/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+HOME=/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+WHO=b190168
+TMPDIR=/tmp
++ Sincronizar
+SHLVL=0
+PATH=/bin:/usr/bin:/usr/local/bin:.
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> set HOME | sed s/HOME=// > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat .aux
+/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29554
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ cat .aux
++ '[' /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168 = /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168 ']'
++ : 'Cierto. Bien.'
++ rm -f .aux
++ :
++ Interno_set_IV _________________________________________________________
++ :
++ : 'Cuando se invoca "set" con dos argumentos:'
++ : '«««   Se debe cambiar el valor actual de la variable.   »»»'
++ :
+set PWD /Un/directorio/cualquiera
++ Sincronizar
+PWD=/Un/directorio/cualquiera
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> set PWD | sed s/PWD=// > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat .aux
+/Un/directorio/cualquiera
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29561
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ cat .aux
++ '[' /Un/directorio/cualquiera = /Un/directorio/cualquiera ']'
++ : 'Cierto. Bien.'
++ rm -f .aux
++ :
++ Interno_set_V __________________________________________________________
++ :
++ : 'Cuando se invoca "set" con mas de dos argumentos:'
++ : '«««   Se deben cambiar el valor actual de la variable.           »»»'
++ : '«««   Se deben concatenar los argumentos intercalando blancos.   »»»'
++ :
+set AUX + Sincronizar
+Una lista de cinco argumentos.
+AUX=Una lista de cinco argumentos.
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> set AUX | sed s/AUX=// > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat .aux
+Una lista de cinco argumentos.
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29568
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ cat .aux
++ '[' 'Una lista de cinco argumentos.' = 'Una lista de cinco argumentos.' ']'
++ : 'Cierto. Bien.'
++ rm -f .aux
++ :
++ LEVEL=70
++ :
++ Metacaracter_Tilde _____________________________________________________
++ :
++ : 'El metacarácter "~" sin argumento:'
++ : '«««   Se debe sustituir por el valor de la variable "HOME".   »»»'
++ :
+: HOME=/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168 > .home
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo ~
+~
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo ~ > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29574
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ cat .home
+++ cat .aux
++ '[' /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168 = '~' ']'
++ : Falso.
++ ERROR_GRAVE
++ NOTA=70
++ : '########## ATENCIÓN ##########'
++ :
++ : 'El metacarácter "~" NO se sustituye correctamente.'
++ rm -f .aux .home
++ :
++ Metacaracter_Dolar_I ___________________________________________________
++ :
++ : 'El metacarácter "$" con argumento "HOME" :'
++ : '«««   Se debe sustituir por el valor de la variable "HOME".   »»»'
++ :
+: HOME=/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168 > .home
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo $HOME
+$HOME
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo $HOME > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29583
++ cmp -s .aux .home
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + : Falso.
++ ERROR_GRAVE
++ : '########## ATENCIÓN ##########'
++ :
++ : 'El metacarácter "$" NO se sustituye correctamente.'
++ rm -f .aux .home
++ :
++ Metacaracter_Dolar_II __________________________________________________
++ :
++ : 'Donde aparezca el metacarácter "$" con argumento:'
++ : '«««   Se debe sustituir correctamente la variable por su valor.   »»»'
++ :
+echo /..$HOME/.+ echo /../home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168/.
+ > .aux
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat .aux
+/..$HOME/.
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29591
++ cmp .aux .aux2
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> .aux .aux2 differ: char 4, line 1
++ : Falso.
++ ERROR_GRAVE
+.aux: Permission denied
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + : '########## ATENCIÓN ##########'
++ :
++ : 'El nombre de la variable comienza tras el metacarácter "$"'
++ : 'y es aquel que casa con el formato "%[_a-zA-Z0-9]"'
++ rm -f .aux .aux2
++ :
++ LEVEL=75
++ :
++ Interno_cd_HOME ________________________________________________________
++ :
++ : 'El mandato "cd ." :'
++ : '«««   Debe mostrar el valor de la variable "HOME".   »»»'
++ :
+: HOME=/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo $HOME
+$HOME
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo $HOME > .home
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cd .
+/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cd . > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29598
++ cmp -s .aux .home
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + : Falso.
++ ERROR_GRAVE
++ : '########## ATENCIÓN ##########'
++ :
++ : 'El mandato "cd" no muestra el valor correcto.'
++ rm -f .aux .home
++ :
++ Interno_set_HOME _______________________________________________________
++ :
++ : 'El mandato "set HOME" :'
++ : '«««   Debe mostrar el valor de la variable "HOME" con formato:   »»»'
++ : '«««   NOMBRE_DE_VARIABLE=valor_de_variable                       »»»'
++ :
+: HOME=/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo HOME=/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168 > .home
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> set HOME
+HOME=/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> set HOME > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29605
++ cmp -s .aux .home
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + : 'Cierto. Bien.'
++ rm -f .aux .home
++ :
++ LEVEL=80
++ :
++ Variables_especiales_I _________________________________________________
++ :
++ : 'Donde aparezca la variable especial "mypid" :'
++ : '«««   Se debe sustituir por el identificador   »»»'
++ : '«««   del propio proceso Minishell.            »»»'
++ :
+echo+ Sincronizar
+ $mypid | tee .aux
+$mypid
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29612
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ cat .aux
++ '[' '$mypid' -eq 29182 ']'
+/home/jail/home2/datsi/ssoo/soX/msh/src/check.msh-4.5.3: line 2551: [: $mypid: integer expression expected
++ : Falso.
++ ERROR_GRAVE
++ : '########## ATENCIÓN ##########'
++ :
++ : 'La variable especial "mypid" NO se sustituye por el valor correcto.'
++ rm -f .aux
++ :
++ Variables_especiales_II ________________________________________________
++ :
++ : 'Donde aparezca la variable especial "status" :'
++ : '«««   Se debe sustituir por el valor de terminación   »»»'
++ : '«««   del último mandato.                             »»»'
++ :
+sleep 0
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo $status > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat ...
+cat: ...: No such file or directory
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo $status > .aux2
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29618
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ cat .aux
++ '[' '$status' -eq 0 ']'
+/home/jail/home2/datsi/ssoo/soX/msh/src/check.msh-4.5.3: line 2579: [: $status: integer expression expected
++ : Falso.
++ ERROR_GRAVE
++ : '########## ATENCIÓN ##########'
++ :
++ : 'La variable especial "status" no mantiene el valor del mandato.'
++ rm -f .aux .aux2
++ :
++ Variables_especiales_III _______________________________________________
++ :
++ : 'Donde aparezca la variable especial "status" :'
++ : '«««   Se debe sustituir por el valor de terminación   »»»'
++ : '«««   de la última secuencia de mandatos              »»»'
++ : '«««   (el del último mandato de la secuencia).        »»»'
++ :
+sleep 0 | sleep 0
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo $status > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> sleep 0 | cat ...
+cat: ...: No such file or directory
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo $status > .aux3
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat ... | sleep 0
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo $status > .aux2
+cat: ...: No such file or directory
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29626
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ cat .aux
++ '[' '$status' -eq 0 ']'
+/home/jail/home2/datsi/ssoo/soX/msh/src/check.msh-4.5.3: line 2611: [: $status: integer expression expected
++ : Falso.
++ ERROR_GRAVE
++ : '########## ATENCIÓN ##########'
++ :
++ : 'La variable especial "status" no mantiene el valor de la secuencia.'
++ rm -f .aux .aux2 .aux3
++ :
++ LEVEL=85
++ :
++ Variables_especiales_IV ________________________________________________
++ :
++ : 'Donde aparezca la variable especial "status" :'
++ : '«««   Se debe sustituir por el valor de terminación   »»»'
++ : '«««   del último mandato interno                      »»»'
++ : '«««   (0 si fue correcto y no 0 si fue incorrecto).   »»»'
++ :
+cd ...
+cd: No such file or directory
++ Sincronizar
+/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo $status > .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cd .
+/home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo $status > .aux2
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29638
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ cat .aux
++ '[' '$status' -ne 0 ']'
+/home/jail/home2/datsi/ssoo/soX/msh/src/check.msh-4.5.3: line 2642: [: $status: integer expression expected
++ : Falso.
++ ERROR_GRAVE
++ : '########## ATENCIÓN ##########'
++ :
++ : 'La variable especial "status" no mantiene el valor del interno.'
++ rm -f .aux .aux2
++ :
++ Variables_especiales_V _________________________________________________
++ :
++ : 'Donde aparezca la variable especial "bgpid" :'
++ : '«««   Se debe sustituir por el identificador        »»»'
++ : '«««   del último proceso arrancado en background.   »»»'
++ :
+sh -v < .doit &
+[29644]
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo $bgpid > .out2
+echo $$ > .out ; /bin/kill -ALRM 29643
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + Sincronizar
+/bin/kill -KILL 29647
++ cmp -s .out .out2
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> + : Falso.
++ ERROR_GRAVE
++ : '########## ATENCIÓN ##########'
++ :
++ : 'La variable especial "bgpid" NO se sustituye por el valor correcto.'
++ rm -f .out .out2 .doit
++ :
++ LEVEL=90
++ :
++ Expansion_de_comodines_I _______________________________________________
++ :
++ : 'Cuando aparezca un carácter "?" :'
++ : '«««   Si un fichero casa con el patrón indicado,              »»»'
++ : '«««   se debe sustituir el texto por el nombre del fichero.   »»»'
++ :
+: El comodín casa con el+ Sincronizar
+ fichero ".aux2".
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> touch .aux .aux2
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo .aux? > .out
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : Debería obtener la línea: .aux2
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat .out
+.aux?
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29652
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ cat .out
++ '[' '.aux?' = .aux2 ']'
++ : Falso.
++ ERROR_GRAVE
++ : '########## ATENCIÓN ##########'
++ :
++ : 'En carácter comodín NO se sustituye correctamente.'
++ rm -f .out .aux .aux2
++ :
++ Expansion_de_comodines_II ______________________________________________
++ :
++ : 'Cuando aparezca un carácter "?" :'
++ : '«««   Si el patrón no casa con ningún fichero,   »»»'
++ : '«««   NO se debe alterar el texto.               »»»'
++ :
+: El comodín no + Sincronizar
+casa con ningún fichero.
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> touch .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo .aux? > .out
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : Debería obtener la línea: .aux?
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat .out
+.aux?
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29661
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ cat .out
++ '[' '.aux?' = '.aux?' ']'
++ : 'Cierto. Bien.'
++ rm -f .out .aux
++ :
++ LEVEL=95
++ :
++ Expansion_de_comodines_III _____________________________________________
++ :
++ : 'Cuando aparezca un carácter "?" :'
++ : '«««   Si varios ficheros casan con el patrón indicado,             »»»'
++ : '«««   se debe expandir a tantos textos como nombres de ficheros.   »»»'
++ :
+touch .aux .aux2 .aux3
++ Sincronizar
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> echo .aux .aux? .aux > .out
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> : Debería obtener la línea: .aux .aux2 .aux3 .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> cat .out
+.aux .aux? .aux
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> /bin/kill -KILL 29671
+msh: /home/jail/home2/datsi/ssoo/soX/msh/home.2021b13/b190168> ++ cat .out
++ '[' '.aux .aux? .aux' = '.aux .aux2 .aux3 .aux' ']'
++ : Falso.
++ ERROR_GRAVE
++ : '########## ATENCIÓN ##########'
++ :
++ : 'No se expande el texto con comodín a los nombres coincidentes.'
++ rm -f .out .aux .aux2 .aux3
++ :
++ LEVEL=100
++ :
++ :
++ FIN_DE_LA_CORRECCION ===================================================
++ :
++ :
++ exit 70
+
++ case $NOTA in
++ : 70
++ : '*** ATENCIÓN ***'
++ : 'Para APROBAR LA PARTE PRACTICA de la asignatura       '
++ : 'es IMPRESCINDIBLE obtener como mínimo 4.5 puntos.     '
++ : 'Debe usted llegar a una media de 4.5 entre esta       '
++ : 'práctica y las demás (si las hubiera).                '
++ :
++ exit 70

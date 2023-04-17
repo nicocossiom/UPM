@@ -1,0 +1,10 @@
+
+/minishell/*.o
+/cmake-build-debug-wsl
+CMakeLists.txt
+.idea
+minishell/msh
+minishell/prueba*
+minishell/out*
+minishell/erro*
+minishell/text*

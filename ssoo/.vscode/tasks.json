@@ -1,0 +1,11 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "compile",
+			"type": "shell",
+			"command": "cd minishell && make cleanall && make",
+			"problemMatcher": []
+		}
+	]
+}

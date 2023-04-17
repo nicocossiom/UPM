@@ -1,0 +1,8 @@
+Este programa invoca diferentes servicios "get". Concretamente:
+- getpid(): Devuelve el valor del identificador de proceso
+- getppid(): Devuelve el valor del identificador del proceso padre
+- getuid(): Devuelve el valor del UID real
+- getgid(): Devuelve el valor del GID real
+- geteuid(): Devuelve el valor del UID efectivo
+- getegid(): Devuelve el valor del GID efectivo
+- getenv(): Devuelve el valor de una variable de entorno. En el ejemplo, la variable de entorno PATH.

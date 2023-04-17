@@ -1,0 +1,26 @@
+1_matar.c:
+Este proceso crea un proceso hijo, que duerme 10 segundos. El proceso padre le envía la señal SIGKILL, matándolo. A continuación, el padre recoge el estado de terminación del hijo, utilizando las macros correspondientes para comprobar si dicho proceso ha terminado correctamente o no, si le ha llegado una señal y qué señal le ha llegado.
+
+2_mascara.c:
+En este programa se utilizan los servicios relacionados con la máscara de señales, enmascarando señales, y consultando si dichas señales están incluídas en la máscara y si las señales están pendientes o no.
+
+3_ignorar.c:
+Este proceso ignora la señal SIGTERM y a continuación crea un proceso hijo, que heredará dicho comportamiento para esa señal. El proceso hijo duerme durante 10 segundos. El padre manda la señal SIGTERM al proceso hijo, pero el hijo no muere, pues tiene ignorada dicha señal. El padre recoge el estado de terminación del proceso hijo, imprimiendo por la salida estándar que el hijo terminó correctamente.
+
+4_alarma.c:
+Este proceso crea un proceso hijo, que ejecuta el mandato o ejecutable especificado por el usuario, opcionalmente con argumentos. El padre pone un temporizador de 10 segundos y espera por el hijo. Si el hijo no termina en esos 10 segundos, el padre mata al proceso hijo.
+
+5_bucle.c:
+Este programa crea un bucle infinito. Se ha implementado para utilizar junto con el ejemplo anterior, de la siguiente forma:
+
+$ gcc 4_alarma.c -o 4_alarma
+$ gcc 5_bucle.c -o 5_bucle
+$ ./4_alarma ./5_bucle
+
+Como el ejecutable 5_bucle no finaliza nunca, el proceso padre lo mata a los 10 segundos.
+
+6_defecto.c:
+Este programa ignora la señal SIGINT y a continuación, el proceso manda esta señal a sí mismo, lo que es ignorado. Después, el proceso establece la acción por defecto para dicha señal, y vuelve a mandarse la señal SIGINT. En esta ocasión, el proceso muere, dado que esa es la acción por defecto para la señal SIGINT.
+
+7_tratarSIGTERM.c:
+El proceso arma la señal SIGTERM y a continuación, crea un proceso hijo, que hereda el armado de la misma. El proceso padre manda la señal SIGTERM al proceso hijo y se queda esperando a la finalización del proceso hijo. El hijo ejecutará la función de armado y finalizará correctamente.

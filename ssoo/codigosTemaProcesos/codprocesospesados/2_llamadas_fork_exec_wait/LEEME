@@ -1,0 +1,32 @@
+1_hijo.c:
+Este proceso crea un proceso hijo. El padre duerme durante 5 segundos y ambos procesos invocan diferentes llamadas "get".
+
+2_hijoSleep.c:
+Este proceso crea un proceso hijo, el cual ejecuta el mandato "sleep 15", mediante execvp. Con ps se puede observar el proceso hijo que duerme durante 15 segundos.
+
+3_hijoLs.c:
+Este proceso crea un proceso hijo, el cual ejecuta el mandato "ls", mediante execlp.
+
+4_ejecutarMandato.c:
+Este proceso crea un proceso hijo, el cual ejecuta el mandato o ejecutable especificado por el usuario, opcionalmente con argumentos.
+ 
+5_espera.c:
+Este proceso crea un proceso hijo. El proceso hijo ejecuta llamadas "get". El proceso padre espera por el proceso hijo y posteriormente ejecuta llamadas "get". El padre no se interesa por el estado de terminación del hijo.
+
+6_ejecutarMandatoEspera.c:
+Este proceso crea un proceso hijo, el cual ejecuta el mandato o ejecutable especificado por el usuario, opcionalmente con argumentos. El proceso padre espera por el proceso hijo.
+
+7_ejecutar2Mandatos.c:
+Este proceso crea 2 procesos hijos, que ejecutan dos mandatos o ejecutables respectivamente (sin argumentos) y el proceso padre espera por ambos, en orden de creación.
+
+8_huerfano.c:
+Este proceso fuerza que el proceso hijo se quede huérfano del proceso padre. El proceso hijo es heredado por el proceso init (PID=1).
+
+9_zombi.c:
+Este proceso fuerza que el proceso hijo se quede en estado zombi. Se puede ver el estado en que queda el proceso utilizando el mandato "ps", habiendo lanzado previamente el proceso en segundo plano.
+
+10_familia.c:
+Se crea una jerarquía de procesos: proceso padre, hijo y nieto. Cada proceso espera por su proceso hijo.
+
+11_macros.c:
+El proceso crea un proceso hijo que divide los dos números que le pasa el usuario. Si se hace una división por cero, el proceso hijo recibe una señal. El proceso padre utiliza las macros WIFEXITED, WEXITSTATUS, WIFSIGNALED y WTERMSIG para comprobar si el proceso hijo ha finalizado correctamente o no y si ha recibido una señal o no, y en caso afirmativo, qué señal.
