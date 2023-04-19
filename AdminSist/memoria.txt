@@ -1,0 +1,40 @@
+Memoria práctica Administración de Sistemas
+Por:
+- Nicolás Cossío Miravalles
+- Hernán Calvo Aguiar
+
+Para la realización de la práctica hemos seguido el órden indicado por el enunciado de la práctica:
+
+0. Creación de las máquinas virtuales: se crea una máquina virtual basada en Ubuntu 22.04 LTS. 
+    Nicolás: instalé UTM, un frontend para QEMU en MacOS, debido a que tengo un Mac con procesador ARM tuve que usar Ubuntu Server 20.04 LTS, tras instalar la interfaz de Ubuntu y la configuración de SSH tenía ya una máquina virtual lista para trabajar. La dupliqué en 3 máquinas para poder realizar las pruebas necesarias.
+    Hernán: intenté usar VirtualBox en Windows y en Ubuntu, me encontré numerosas dificultades a la hora de instalarlo, con problemas como glitches en la pantalla. Como comentario quizás una guía sería ideal para alumnos que nunca hayan instalado una VM.  
+    
+    Es por esto que las pruebas se corrieron de forma exclusiva en las máquinas virtuales de Nicolás.
+
+1. Creación de usuario: se crean los usuarios y se les asigna una contraseña.
+    En esta funcionalidad no hemos encontrado demasiados problemas a la hora de desarrollarla. 
+    En cuanto a la elección de la creación de la contraseña optamos por usar openssl, que no viene preinstalado, por lo que tuvimos que añadir la instalación al script. Este es el mandato por el que optamos `openssl rand -base64 8` para generar 8 caracteres alfanuméricos aleatorios. Tras la creación de los usuarios se les asigna la contraseña mediante chpasswd `echo "$user:$password" | chpasswd`, esto no es una forma segura de hacerlo, pero como esto es opcional no nos pareció necesario dedicarle más tiempo.
+    El mayor quebradero de cabeza fue encontrar el motivo por el cual los permisos `chmod 2775 -R /srv/"$1"` no se aplicaban correctamente, quedando el directorio sin permisos de escritura para el grupo. Descubrimos que el problema era que era necesario cambiar la máscara del usuario mediante `sudo sed -i 's/UMASK.*/UMASK 002/' /etc/login.defs`.
+
+2. Configuración del almacenamiento: creación de un grupo de volúmenes (VG) a partir de discos o particiones (PVs) y generando volúmenes lógicos (LVs).
+    La parte dedicada a las comprobaciones necesarias en esta fase no tuvo ninguna complicación. Sin embargo, la parte de la creación de los volúmenes lógicos fue un poco más complicada. 
+    En primer lugar, el mandato de creación de volúmenes lógicos `lvcreate` tiene muchas opciones en su uso. Encontramos que mediante  la opción `-l` se podía especificar el tamaño del volumen lógico en distintas unidades, dado que se nos proporcionaban % de espacio del total teníamos que usar `lvcreate -l -y "$porcentaje%VG" "$nombre_grupo_vol"`, pero leímos mal el manual y estabamos usando %FREE que coge del espacio libre del VG especificado, lo cual era incorrecto.
+    En segundo lugar, no se especifíca el sistema de ficheros a utilizar, aunque en el ejemplo se use ext2 decididmos usar ext4, ya que es el sistema de ficheros por defecto en Ubuntu y es más reciente que ext2.
+    En tercer lugar la sintáxis del mandato `mkfs.ext4` fue un tanto liosa ya que como no se especifica el nombre tuvimos que usar un contador que se autoincrementa para asignar el nombre `mkfs.ext4 "/dev/$VG_NAME/lvol$NUM_LV"`.
+    Por último, en cuanto al montaje se nos olvido añadir las entradas en `/etc/fstab` para que se montaran automáticamente al arrancar el sistema, lo hicimos directamente con `mount` que no persiste.
+
+3. Configuración del servidor NFS: creación de un servidor NFS y configuración de los permisos de acceso.
+    Esta fase fue relativamente sencilla, añadimos la instalación de nfs-kernel-server y tras probar en la VM a configurar el servidor de forma manual lo pusimos en el script sin ninguna complicación.
+
+4. Configuración del cliente NFS: cconfiguración de un cliente NFS acorde a los parámetros especificados que indican qué directorios se importan, de qué servidores y en qué directorios locales se montan.
+    Esta parte fue también muy sencilla, añadimos la instalación de nfs-common y tras probar en la VM a configurar el cliente de forma manual y tras comprobar que los directorios remotos se habían montado correctamente lo pusimos en el script.
+
+5. Maestro: parsing del archivo de configuración, scp de los scripts a los nodos y ssh remoto para su ejecución en dichos nodos.
+    En la parte final tuvimos bastantes complicación a la hora de entender lo que se pedía en el enunciado sobre el archivo de configuración, aunque esto es más por fallo de comprensión nuestro que por el enunciado en sí. Tras finalmente tener claro el formato de las entradas nos encontramos con ciertas dificultades en el parseo del archivo debido a que no estamos acostumbrados al manejo de flujo que se realiza en bash mediante los operadores || y && para encadenar comprobaciones. Tras muchos intentos manuales en la terminal conseguimos que el parseo funcionara correctamente. También nos ayudamos de multitud de expresiones regulares para comprobar que el formato de las entradas era correcto, además de las comprobaciones de contenido previamente mencionadas.
+    En cuanto a la parte del scp y el ssh esto fue relativamente trivial.
+
+Opiniones sobre el proyecto
+---------------------------
+Creemos que es un proyecto muy interesante y que nos ha permitido aprender mucho sobre el manejo de bash y el uso de comandos de linux. También nos ha permitido aprender a usar y configurar máquinas virtuales. 
+Hemos tenido un contacto con las expresiones regulares que apenas habíamos utilizado en la carrera, y a manejar el flujo de control en bash, que es un cambio de paradigma respecto a los lenguajes de programación habituales. Aunque pensamos que Bash como lenguaje esta muy limitado y no es muy cómodo de usar en comparación con otros lenguajes de programación como Python. Aunque esta impresión que tenemos se puede debera a que no estamos muy familiarizados con él y a que realmente no es un lenguaje de programación, sino un lenguaje de scripting o orquestrador de comandos.
+En resumen, resulta muy satisfactorio realizar un proyecto donde se ponen en práctica casi todos los conocimientos adquiridos en la asignatura y ver su utilidad en situaciones de la vida real como es la planteada en este proyecto.

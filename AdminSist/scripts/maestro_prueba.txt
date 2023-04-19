@@ -1,0 +1,11 @@
+# máquina apagada
+KERNEL_LOG 192.168.64.8 /tmp/kerlog1.txt kernel_log.sh
+       
+# máquina ligada
+                 
+
+
+
+
+
+    
