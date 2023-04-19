@@ -1,0 +1,55 @@
+Issue ID,URL,Title,State,Description,Author,Author Username,Assignee,Assignee Username,Confidential,Locked,Due Date,Created At (UTC),Updated At (UTC),Closed At (UTC),Milestone,Weight,Labels,Time Estimate,Time Spent
+2,https://costa.ls.fi.upm.es/gitlab/grupoprogrammingproject/sokoban/-/issues/2,19. Game menu,Open,"","COSSÍO MIRAVALLES, NICOLÁS",190082,"","",No,No,,2022-05-01 17:46:14,2022-05-10 13:05:02,,,,"Low Priority,User-story",0,0
+3,https://costa.ls.fi.upm.es/gitlab/grupoprogrammingproject/sokoban/-/issues/3,18. Game saving and loading,Open,"","COSSÍO MIRAVALLES, NICOLÁS",190082,"","",No,No,,2022-05-01 17:52:25,2022-05-10 13:05:08,,,,"Feature,Medium priority",0,0
+4,https://costa.ls.fi.upm.es/gitlab/grupoprogrammingproject/sokoban/-/issues/4,12. Levels correctness,Open,"","LE quang, VINH",190286,"COSSÍO MIRAVALLES, NICOLÁS",190082,No,No,2022-05-20,2022-05-01 17:52:43,2022-05-10 13:00:40,,Sprint1,,"Feature,High priority",0,0
+5,https://costa.ls.fi.upm.es/gitlab/grupoprogrammingproject/sokoban/-/issues/5,2. Consecutive walls,Open,Two or more consecutive walls should have the aspect of being only one piece.,"GONZALEZ MENDEZ, ALVARO",190315,"GONZALEZ MENDEZ, ALVARO",190315,No,No,2022-05-20,2022-05-01 17:52:50,2022-05-10 13:01:26,,Sprint1,,"Feature,High priority",0,0
+6,https://costa.ls.fi.upm.es/gitlab/grupoprogrammingproject/sokoban/-/issues/6,3. Movement,Open,"","GONZALEZ MENDEZ, ALVARO",190315,"LE quang, VINH",190286,No,No,,2022-05-01 17:56:18,2022-05-10 13:05:25,,Sprint1,,"Feature,High priority",0,0
+7,https://costa.ls.fi.upm.es/gitlab/grupoprogrammingproject/sokoban/-/issues/7,4. Walls cannot be traversed,Open,"","GONZALEZ MENDEZ, ALVARO",190315,"REVILLA ROJAS, SEBASTIÁN",190366,No,No,,2022-05-01 17:57:28,2022-05-10 13:05:44,,Sprint1,,"Feature,High priority",0,0
+8,https://costa.ls.fi.upm.es/gitlab/grupoprogrammingproject/sokoban/-/issues/8,10. 3 different levels min. 1 as shown,Open,"The application must include:
+- [ ] At least 3 different levels with different boards.
+- [ ] The first level must be:
+![PDFXEdit_N17pyHBTwO](/uploads/a20efb2eb5846b38fc5228af4ecd9b14/PDFXEdit_N17pyHBTwO.png)","REVILLA ROJAS, SEBASTIÁN",190366,"","",No,No,,2022-05-01 17:59:49,2022-05-10 13:05:54,,,,"Low Priority,User-story",0,0
+9,https://costa.ls.fi.upm.es/gitlab/grupoprogrammingproject/sokoban/-/issues/9,17. All movements in the current level can be undone,Open,The application must record all the movements done since the beginning of the level.,"COSSÍO MIRAVALLES, NICOLÁS",190082,"","",No,No,,2022-05-01 17:59:49,2022-05-10 13:06:00,,,,"Feature,Medium priority",0,0
+10,https://costa.ls.fi.upm.es/gitlab/grupoprogrammingproject/sokoban/-/issues/10,6. Box change colorin a goal position,Open,,"GONZALEZ MENDEZ, ALVARO",190315,"","",No,No,,2022-05-01 18:02:49,2022-05-10 13:06:13,,,,"Feature,Medium priority",0,0
+11,https://costa.ls.fi.upm.es/gitlab/grupoprogrammingproject/sokoban/-/issues/11,5. Move boxes,Open,"","GONZALEZ MENDEZ, ALVARO",190315,"LE quang, VINH",190286,No,No,,2022-05-01 18:04:09,2022-05-10 13:06:33,,Sprint1,,"Feature,Medium priority",0,0
+12,https://costa.ls.fi.upm.es/gitlab/grupoprogrammingproject/sokoban/-/issues/12,16. Game screen must show,Open,"Game screen must show:
+- [ ] board
+- [ ] level name
+- [ ] punctuation of the level
+- [ ] punctutation of the game","COSSÍO MIRAVALLES, NICOLÁS",190082,"","",No,No,,2022-05-01 18:04:12,2022-05-10 13:06:42,,,,"Feature,Low Priority",0,0
+13,https://costa.ls.fi.upm.es/gitlab/grupoprogrammingproject/sokoban/-/issues/13,13. Punctuation of level,Open,"The punctuation of the level is the number of movements done by the warehouse man from the beginning of the level.
+
+User's perspective: The user can be able to see a counter of the movements they have done from the beginning of the level","LE quang, VINH",190286,"REVILLA ROJAS, SEBASTIÁN",190366,No,No,,2022-05-01 18:04:22,2022-05-10 12:59:58,,Sprint1,,"Feature,Medium priority,User-story",0,0
+15,https://costa.ls.fi.upm.es/gitlab/grupoprogrammingproject/sokoban/-/issues/15,7. A goal position can have one box,Open,,"GONZALEZ MENDEZ, ALVARO",190315,"GONZALEZ MENDEZ, ALVARO",190315,No,No,2022-05-20,2022-05-01 18:08:31,2022-05-10 12:58:00,,Sprint1,,"Feature,Low Priority",0,0
+16,https://costa.ls.fi.upm.es/gitlab/grupoprogrammingproject/sokoban/-/issues/16,8. Level completion,Open,,"GONZALEZ MENDEZ, ALVARO",190315,"","",No,No,,2022-05-01 18:09:05,2022-05-10 13:07:00,,,,"Feature,Medium priority",0,0
+17,https://costa.ls.fi.upm.es/gitlab/grupoprogrammingproject/sokoban/-/issues/17,15. Final level congratulations message and points,Open,"When the last level, the one whose consecutive number is not found, is passed, the program must show a congratulations message with its punctuation (number of movements).","COSSÍO MIRAVALLES, NICOLÁS",190082,"","",No,No,,2022-05-01 18:11:01,2022-05-01 18:11:01,,,,"Feature,User-story",0,0
+18,https://costa.ls.fi.upm.es/gitlab/grupoprogrammingproject/sokoban/-/issues/18,1. Game Items,Open,,"GONZALEZ MENDEZ, ALVARO",190315,"GONZALEZ MENDEZ, ALVARO",190315,No,No,2022-05-10,2022-05-01 18:13:28,2022-05-10 12:57:22,,Sprint1,,"Feature,High priority",0,0
+19,https://costa.ls.fi.upm.es/gitlab/grupoprogrammingproject/sokoban/-/issues/19,14. Punctuation of the game,Open,The punctuation of the game is the addition of the punctuation of all levels.,"COSSÍO MIRAVALLES, NICOLÁS",190082,"","",No,No,,2022-05-01 18:16:26,2022-05-10 13:07:16,,,,"Feature,Low Priority",0,0
+20,https://costa.ls.fi.upm.es/gitlab/grupoprogrammingproject/sokoban/-/issues/20,11.  Level files format,Open,"Level files must be plain text files which adhere the following format:  
+The first line contains the name of the level.  
+The second line contains two numbers which corresponds to the dimensions, nRows and nColumns, of the board  
+The following nRows lines contains the elements of the board. Each row must contain nColums with the following elements:
+```
+   +: Wall
+   .: Empty square
+   *: Goal Position
+   #: Box
+   W: Warehouse man
+```
+The following level has to be number 1  
+```
+Initial level
+8 8
+++++
++ +
++ +++++
++ +
+++W*+# +
++ + +
++ ++++
++++++
+```","REVILLA ROJAS, SEBASTIÁN",190366,"COSSÍO MIRAVALLES, NICOLÁS",190082,No,No,2022-05-20,2022-05-01 18:17:27,2022-05-10 12:57:06,,Sprint1,,"Feature,High priority",0,0
+21,https://costa.ls.fi.upm.es/gitlab/grupoprogrammingproject/sokoban/-/issues/21,9. Level reading,Open,,"GONZALEZ MENDEZ, ALVARO",190315,"","",No,No,,2022-05-01 18:18:04,2022-05-10 13:07:38,,,,"Feature,Medium priority",0,0
+23,https://costa.ls.fi.upm.es/gitlab/grupoprogrammingproject/sokoban/-/issues/23,Video,Open,Demo video of 5 minutes showing the application and the completed requirements must be recorded and submitted by Moodle(Sprint 1 Demo).,"COSSÍO MIRAVALLES, NICOLÁS",190082,"GONZALEZ MENDEZ, ALVARO",190315,No,No,2022-05-20,2022-05-08 20:34:09,2022-05-10 13:07:45,,Sprint1,,"High priority,Work-item",0,0
+24,https://costa.ls.fi.upm.es/gitlab/grupoprogrammingproject/sokoban/-/issues/24,Export CSV for backlog,Open,"","COSSÍO MIRAVALLES, NICOLÁS",190082,"COSSÍO MIRAVALLES, NICOLÁS",190082,No,No,2022-05-10,2022-05-08 20:34:51,2022-05-10 13:07:51,,,,"High priority,Work-item",0,0
+25,https://costa.ls.fi.upm.es/gitlab/grupoprogrammingproject/sokoban/-/issues/25,Export CSV,Open,"","COSSÍO MIRAVALLES, NICOLÁS",190082,"COSSÍO MIRAVALLES, NICOLÁS",190082,No,No,2022-05-20,2022-05-08 20:35:36,2022-05-10 13:08:00,,Sprint1,,"High priority,Work-item",0,0

@@ -1,0 +1,15 @@
+es\upm\pproject\sokoban\model\gamelevel\Board.class
+es\upm\pproject\sokoban\controller\movements\Inputs$1.class
+es\upm\pproject\sokoban\model\gamelevel\Board$1.class
+es\upm\pproject\sokoban\model\gamelevel\tiles\Tile.class
+es\upm\pproject\sokoban\model\gamelevel\LevelLoader.class
+es\upm\pproject\sokoban\view\ViewManager.class
+es\upm\pproject\sokoban\model\levelExceptions\invalidLevelCharacterException.class
+es\upm\pproject\sokoban\view\ViewManager$1.class
+es\upm\pproject\sokoban\model\gamelevel\Level.class
+es\upm\pproject\sokoban\model\gamelevel\tiles\WallTile.class
+es\upm\pproject\sokoban\controller\movements\Inputs.class
+es\upm\pproject\sokoban\model\gamelevel\tiles\TileType.class
+es\upm\pproject\sokoban\view\SokobanScene.class
+es\upm\pproject\sokoban\view\SokobanSounds.class
+es\upm\pproject\sokoban\App.class
